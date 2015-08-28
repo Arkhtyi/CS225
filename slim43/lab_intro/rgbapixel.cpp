@@ -6,6 +6,7 @@ RGBAPixel::RGBAPixel()
 	red = 255;
 	green = 255;
 	blue = 255;
+	int x = 0;
 }
 	
 RGBAPixel::RGBAPixel(uint8_t r, uint8_t g, uint8_t b)
