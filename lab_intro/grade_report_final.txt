@@ -1,0 +1,22 @@
+Grading revision r1892 by slim43, dated 2015-08-28 16:37:59.000304109 -0500 CDT
+Monad Autograder
+Testing lab_intro at 2015-08-31 00:43:52
+
+"Worry loudly now or scream louder later." ~ Michael Lopp
+
+Setting up test environment...
+Compiling...
+================================================================
+
+
+Running tests...
+================================================================
+testBrighten  . [33 pts] - passed
+testCrosshairs  [33 pts] - passed
+testBlendImages [34 pts] - passed
+
+
+Total score...
+================================================================
+TOTAL SCORE: 100
+
