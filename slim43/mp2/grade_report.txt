@@ -1,0 +1,8 @@
+Grading revision r7679 by tolar2, dated 2015-09-09 01:56:36.000830458 -0500 CDT
+Monad Autograder
+Testing mp2 at 2015-09-10 00:45:25
+
+"Simplicity and elegance are unpopular because they require hard work and discipline to achieve and education to be appreciated." ~ Edsger Dijkstra
+
+Setting up test environment...
+Error: /dev/shm/cs225student/autograder/temp/mp2/scene.h does not exist.
