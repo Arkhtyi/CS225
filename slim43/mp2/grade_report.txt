@@ -1,8 +1,92 @@
-Grading revision r7679 by tolar2, dated 2015-09-09 01:56:36.000830458 -0500 CDT
+Grading revision r7903 by slim43, dated 2015-09-10 11:51:30.000132169 -0500 CDT
 Monad Autograder
-Testing mp2 at 2015-09-10 00:45:25
+Testing mp2 at 2015-09-11 00:44:52
 
-"Simplicity and elegance are unpopular because they require hard work and discipline to achieve and education to be appreciated." ~ Edsger Dijkstra
+"Anything that can go wrong will go wrong." ~ Murphy's Law
 
 Setting up test environment...
-Error: /dev/shm/cs225student/autograder/temp/mp2/scene.h does not exist.
+Compiling...
+================================================================
+image.cpp:9:20: warning: comparison of integers of different signs: 'int' and 'unsigned long' [-Wsign-compare]
+for(int i = 0; i+1 <= (this->width())/2 ; i++){
+               ~~~ ^  ~~~~~~~~~~~~~~~~~
+image.cpp:10:23: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
+   for(int j = 0; j+1 <= (this->height())  ; j++){
+                  ~~~ ^   ~~~~~~~~~~~~~~
+image.cpp:39:20: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
+for(int x = 0; x+1 <= (this->width()); x++){
+               ~~~ ^   ~~~~~~~~~~~~~
+image.cpp:40:23: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
+   for(int y = 0; y+1 <= (this->height()); y++){
+                  ~~~ ^   ~~~~~~~~~~~~~~
+image.cpp:71:20: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
+for(int x = 0; x+1 <= (this->width()); x++){
+               ~~~ ^   ~~~~~~~~~~~~~
+image.cpp:72:23: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
+   for(int y = 0; y+1 <= (this->height()); y++){
+                  ~~~ ^   ~~~~~~~~~~~~~~
+6 warnings generated.
+image.cpp:9:20: warning: comparison of integers of different signs: 'int' and 'unsigned long' [-Wsign-compare]
+for(int i = 0; i+1 <= (this->width())/2 ; i++){
+               ~~~ ^  ~~~~~~~~~~~~~~~~~
+image.cpp:10:23: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
+   for(int j = 0; j+1 <= (this->height())  ; j++){
+                  ~~~ ^   ~~~~~~~~~~~~~~
+image.cpp:39:20: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
+for(int x = 0; x+1 <= (this->width()); x++){
+               ~~~ ^   ~~~~~~~~~~~~~
+image.cpp:40:23: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
+   for(int y = 0; y+1 <= (this->height()); y++){
+                  ~~~ ^   ~~~~~~~~~~~~~~
+image.cpp:71:20: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
+for(int x = 0; x+1 <= (this->width()); x++){
+               ~~~ ^   ~~~~~~~~~~~~~
+image.cpp:72:23: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
+   for(int y = 0; y+1 <= (this->height()); y++){
+                  ~~~ ^   ~~~~~~~~~~~~~~
+6 warnings generated.
+
+
+Running tests...
+================================================================
+InvertColorsEven . . . . . . . . . [8 pts] - passed
+FlipLeftEven . . . . . . . . . . . [4 pts] - passed
+FlipLeftOdd  . . . . . . . . . . . [4 pts] - passed
+AdjustBrightnessEven . . . . . . . [3 pts] - passed
+AdjustBrightnessEven2  . . . . . . [3 pts] - passed
+AdjustBrightnessEven3  . . . . . . [3 pts] - passed
+ImageMakefile  . . . . . . . . . . [5 pts] - FAILED
+Valgrind1 (asan) . . . . . . . . . [5 pts] - passed
+AddPictureValidIndex . . . . . . . [2 pts] - passed
+AddPictureInvalidIndex . . . . . . [2 pts] - FAILED
+ImageAssignmentOperator  . . . . . [2 pts] - passed
+SceneGetPictureInvalidIndex  . . . [2 pts] - passed
+SceneChangeMaxLayersLarger . . . . [2 pts] - FAILED
+SceneChangeMaxLayersSmaller (asan) [1 pts] - FAILED
+SceneChangeMaxLayersInvalidChange  [2 pts] - FAILED
+SceneCopyCtor  . . . . . . . . . . [2 pts] - passed
+SceneCopyCtor2 . . . . . . . . . . [2 pts] - passed
+SceneAssignmentOperator  . . . . . [2 pts] - passed
+SceneAssignmentOperator2 . . . . . [2 pts] - passed
+SceneChangeLayer . . . . . . . . . [2 pts] - passed
+SceneChangeLayerInvalid  . . . . . [2 pts] - passed
+SceneDrawScene . . . . . . . . . . [3 pts] - passed
+SceneDrawScene2  . . . . . . . . . [3 pts] - passed
+SceneDrawScene3  . . . . . . . . . [3 pts] - FAILED
+SceneDrawScene4  . . . . . . . . . [3 pts] - FAILED
+SceneDrawSceneChangeLayer  . . . . [2 pts] - passed
+SceneDrawSceneDeletePicture  . . . [2 pts] - passed
+SceneDrawSceneTranslate  . . . . . [2 pts] - passed
+SceneDrawSceneTranslate2 . . . . . [2 pts] - FAILED
+SceneTranslateInvalid  . . . . . . [2 pts] - passed
+SceneTranslateInvalid2 . . . . . . [1 pts] - passed
+SceneDeletePictureInvalid  . . . . [2 pts] - passed
+Valgrind2 (asan) . . . . . . . . . [5 pts] - FAILED
+Valgrind3 (asan) . . . . . . . . . [5 pts] - FAILED
+SceneMakefile  . . . . . . . . . . [5 pts] - passed
+
+
+Total score...
+================================================================
+TOTAL SCORE: 70
+
