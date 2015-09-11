@@ -109,13 +109,19 @@ void Allocator::printRooms()
 	for (int i = 0; i < roomCount; i++)
 		rooms[i].print();
 
-	delete [] alpha;
-	delete [] rooms;
 }
 
 /**
  * Calculates the allocation
  */
+
+Allocator::~Allocator()
+{
+	delete [] alpha;
+	delete [] rooms;
+
+}
+ 
 int Allocator::solve()
 {
 	stable_sort(alpha, alpha + 26);
