@@ -41,6 +41,8 @@ class Allocator
          * Prints the room allocation determined by this Allocator.
          */
         void printRooms();
+        
+        ~Allocator();
 
 	private:
 
