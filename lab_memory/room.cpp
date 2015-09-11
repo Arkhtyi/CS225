@@ -83,7 +83,7 @@ void Room::print()
 void Room::clear()
 {
 	if (letters != NULL)
-		delete letters;
+		delete [] letters;
 }
 
 /**
@@ -94,7 +94,13 @@ void Room::copy(const Room & other)
 	name        = other.name;
 	capacity    = other.capacity;
 	count       = other.count;
+	max_letters = other.max_letters;
+	if(letters == NULL)
+		letters = new Letter[max_letters];
+		for(int i = 0; i < max_letters; i++){
+			letters[i] = other.letters[i];
+		}
+	
 	letterCount = other.letterCount;
-	letters     = other.letters;
-}
+}	
 

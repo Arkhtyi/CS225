@@ -76,7 +76,7 @@ class Allocator
          * Returns the amount of seats remaining in the room with the
          *  fewest spare seats.
          */
-        int minSpaceRemaining();
+        int minSpaceRemaining(); 
 
         /** Array of all letters (size 26) */
         Letter* alpha;
