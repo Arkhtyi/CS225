@@ -1,8 +1,8 @@
-Grading revision r7903 by slim43, dated 2015-09-10 11:51:30.000132169 -0500 CDT
+Grading revision r8249 by tolar2, dated 2015-09-11 01:04:11.000418127 -0500 CDT
 Monad Autograder
-Testing mp2 at 2015-09-11 00:44:52
+Testing mp2 at 2015-09-12 00:47:22
 
-"Anything that can go wrong will go wrong." ~ Murphy's Law
+"If you can't remember a formula during the exam it's probably not important." ~ Prof. Chengxiang Zhai
 
 Setting up test environment...
 Compiling...
