@@ -1,8 +1,8 @@
-Grading revision r8249 by tolar2, dated 2015-09-11 01:04:11.000418127 -0500 CDT
+Grading revision r8774 by tolar2, dated 2015-09-12 01:06:28.000922904 -0500 CDT
 Monad Autograder
-Testing mp2 at 2015-09-12 00:47:22
+Testing mp2 at 2015-09-13 00:49:48
 
-"If you can't remember a formula during the exam it's probably not important." ~ Prof. Chengxiang Zhai
+"The primary purpose of the DATA statement is to give names to constants; instead of referring to pi as 3.141592653589793 at every appearance, the variable PI can be given that value with a DATA statement and used instead of the longer form of the constant. This also simplifies modifying the program, should the value of pi change." ~ FORTRAN manual for Xerox computers
 
 Setting up test environment...
 Compiling...
