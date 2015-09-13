@@ -226,10 +226,17 @@ Image Scene::drawscene() const{
 }
 
 void Scene::clear(){
+	
+	
 	if(images != NULL){
 		for(int i = 0; i < currentlength -1 ; i++){
-		delete images[i];
-	}}
+			delete images[i];
+		
+		}
+	}
+	
+	delete images;
+	
 	if(xcords != NULL)
 		delete [] xcords;
 	if(ycords != NULL)
