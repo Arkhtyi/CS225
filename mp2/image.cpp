@@ -6,8 +6,8 @@ void Image::flipleft(){
 
 RGBAPixel *pixel = new RGBAPixel();
 
-for(int i = 0; i+1 <= (this->width())/2 ; i++){
-   for(int j = 0; j+1 <= (this->height())  ; j++){
+for(size_t i = 0; i+1 <= (this->width())/2 ; i++){
+   for(size_t j = 0; j+1 <= (this->height())  ; j++){
 	
 	
 
@@ -36,8 +36,8 @@ int reed;
 int greeen;
 int bluee;
 
-for(int x = 0; x+1 <= (this->width()); x++){
-   for(int y = 0; y+1 <= (this->height()); y++){
+for(size_t x = 0; x+1 <= (this->width()); x++){
+   for(size_t y = 0; y+1 <= (this->height()); y++){
 
 	reed =  (* this)(x,y)-> red + r; 
 	if( reed > 255)
@@ -68,8 +68,8 @@ for(int x = 0; x+1 <= (this->width()); x++){
 void Image::invertcolors(){
 
 
-for(int x = 0; x+1 <= (this->width()); x++){
-   for(int y = 0; y+1 <= (this->height()); y++){
+for(size_t x = 0; x+1 <= (this->width()); x++){
+   for(size_t y = 0; y+1 <= (this->height()); y++){
 
 	(* this)(x,y)-> red = 255 - (* this)(x,y)-> red;  
 	(* this)(x,y)-> green =  255 - (* this)(x,y)-> green; 

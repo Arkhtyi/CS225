@@ -1,9 +1,8 @@
-EXENAME = testscene
-OBJS = testscene.o png.o image.o rgbapixel.o scene.o
+EXENAME = testimage
+OBJS = testimage.o png.o image.o rgbapixel.o scene.o
 
-EXENAME2 = testimage
-OBJS2 = testimage.o png.o image.o rgbapixel.o scene.o
-
+EXENAME2 = testscene
+OBJS2 = testscene.o png.o image.o rgbapixel.o scene.o
 
 
 CXX = clang++
@@ -17,12 +16,12 @@ $(EXENAME) : $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
 
 $(EXENAME2) : $(OBJS2)
-	$(LD) $(OBJS2) $(LDFLAGS) -o $(EXENAME)
+	$(LD) $(OBJS2) $(LDFLAGS) -o $(EXENAME2)
 
-testscene.o : testscene.cpp scene.h image.h png.h rgbapixel.h
+testscene.o : testscene.cpp scene.h image.h 
 	$(CXX) $(CXXFLAGS) testscene.cpp
 
-testimage.o : testimage.cpp image.h png.h rgbapixel.h
+testimage.o : testimage.cpp image.h 
 	$(CXX) $(CXXFLAGS) testimage.cpp
 
 png.o : png.cpp png.h image.h image.cpp
@@ -34,8 +33,8 @@ rgbapixel.o : rgbapixel.cpp rgbapixel.h
 image.o : image.h image.cpp 
 	$(CXX) $(CXXFLAGS) image.cpp
 
-scene.o : scene.h scene.cpp
+scene.o : scene.h scene.cpp 
 	$(CXX) $(CXXFLAGS) scene.cpp
 
 clean :
-	-rm -f *.o $(EXENAME)
+	-rm -f *.o $(EXENAME) $(EXENAME2) 
