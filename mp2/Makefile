@@ -21,16 +21,16 @@ $(EXENAME2) : $(OBJS2)
 testscene.o : testscene.cpp scene.h image.h 
 	$(CXX) $(CXXFLAGS) testscene.cpp
 
-testimage.o : testimage.cpp image.h 
+testimage.o : testimage.cpp image.h rgbapixel.h png.h 
 	$(CXX) $(CXXFLAGS) testimage.cpp
 
-png.o : png.cpp png.h image.h image.cpp
+png.o : png.cpp png.h rgbapixel.h
 	$(CXX) $(CXXFLAGS) png.cpp
 
 rgbapixel.o : rgbapixel.cpp rgbapixel.h
 	$(CXX) $(CXXFLAGS) rgbapixel.cpp
 
-image.o : image.h image.cpp 
+image.o : image.h image.cpp rgbapixel.h png.h
 	$(CXX) $(CXXFLAGS) image.cpp
 
 scene.o : scene.h scene.cpp 
