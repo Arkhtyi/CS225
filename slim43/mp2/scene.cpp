@@ -2,15 +2,15 @@
 
 Scene::Scene (int max){
    images = new Image*[max];
-   currentlength = max;   
-   for(int i = 0; i < currentlength; i++){
+   curlength = max;   
+   for(int i = 0; i < curlength; i++){
       images[i] = NULL;
    }
-   xcords = new int[max];
-   ycords = new int[max];
-    for(int i = 0; i < currentlength; i++){
-      xcords[i] = 0;
-      ycords[i] = 0;
+   xc = new int[max];
+   yc = new int[max];
+    for(int i = 0; i < curlength; i++){
+      xc[i] = 0;
+      yc[i] = 0;
    }
 
 
@@ -44,16 +44,23 @@ const Scene & Scene::operator=(const Scene & source){
 
 void Scene::changemaxlayers(int newmax){
 
-	
+	if(newmax < curlength){
+		for(int i = newmax; i < curlength; i++){
+			if(images[i] != NULL){		
+			   cout << "invalid newmax" << endl;
+			   return;
+			   }
+		   }
+	}
 
 	Image ** temp = new Image*[newmax];
 	
 	for(int i = 0; i < newmax; i++){
 	
-	if(temp[i] == NULL)
-	   continue; 	
+		if(temp[i] == NULL)
+		   continue; 	
 
-	temp[i] = images[i];
+		temp[i] = images[i];
 
 	}
 
@@ -67,44 +74,43 @@ void Scene::changemaxlayers(int newmax){
 	
 	delete [] temp;
 
-	if(newmax < currentlength-1){
-	   cout << "invalid newmax" << endl;
-	   return;
-	}
+	
 
-	currentlength = newmax;
+	curlength = newmax;
 
 
 }
 //Memory leak
 void Scene::addpicture(const char * FileName, int index, int x, int y){
 
-	if(currentlength-1 < index)
+	if(curlength < index){
 	   cout<<"index out of bounds"<<endl;
-
+	   return;
+	}
+	
 	delete images[index];
 
 	Image * temp = new Image();
 	temp->readFromFile(FileName);
 
 	images[index] = temp; 
-	xcords[index] = x;
-	ycords[index] = y;
+	xc[index] = x;
+	yc[index] = y;
 
 
 
 	
-	//delete temp;
 
 }
-//doesnt work
+
+
 void Scene::changelayer(int index, int newindex){
 	
-	if(index == newindex)
+	if(index == newindex)	
 	   return;
 
 
-	if(index < 0 || index > currentlength-1 || newindex < 0 || newindex > currentlength-1){
+	if(index < 0 || index > curlength-1 || newindex < 0 || newindex > curlength-1){
 	   cout<<"invalid index"<<endl;
 	   return;}
 
@@ -115,11 +121,11 @@ void Scene::changelayer(int index, int newindex){
 	images[newindex] = images[index];
 	images[index] = NULL;
 	
-	xcords[newindex] = xcords[index];
-	ycords[newindex] = ycords[index];
+	xc[newindex] = xc[index];
+	yc[newindex] = yc[index];
 
-	xcords[index] = 0;
-	ycords[index] = 0;
+	xc[index] = 0;
+	yc[index] = 0;
 }
 
 
@@ -130,8 +136,8 @@ void Scene::translate(int index, int xcoord, int ycoord){
 	   return;
 	}
 
-	xcords[index] = xcoord;
-	ycords[index] = ycoord;
+	xc[index] = xcoord;
+	yc[index] = ycoord;
 
 	
 
@@ -140,15 +146,15 @@ void Scene::translate(int index, int xcoord, int ycoord){
 //aint workin
 void Scene::deletepicture(int index){
 
-	if(index < 0 || index > currentlength-1 || images[index] == NULL){
+	if(index < 0 || index > curlength-1 || images[index] == NULL){
 	   cout<<"invalid index"<<endl;
 	   return;
 	}
 	
 	   delete images[index]; 
 	   images[index] = NULL;
-	   xcords[index] = 0;
-	   ycords[index] = 0;
+	   xc[index] = 0;
+	   yc[index] = 0;
 	
 
 
@@ -156,7 +162,7 @@ void Scene::deletepicture(int index){
 
 Image *Scene::getpicture(int index)const{
 	
-	if(index < 0 || index > currentlength-1){
+	if(index < 0 || index > curlength-1){
 	   cout<< "invalid index" <<endl;
 	   return NULL;
 	}
@@ -178,15 +184,15 @@ Image Scene::drawscene() const{
 	int temph = 0;
 
 	//find the size for the canvus
-	for(int i = 0; i < currentlength-1; i++){
+	for(int i = 0; i < curlength; i++){
 	
 	if(images[i] != NULL){
 
 	   int sizew = images[i]->width();
 	   int sizeh = images[i]->height();
 
-	   int width = xcords[i] + sizew;
-	   int height = ycords[i] + sizeh;
+	   int width = xc[i] + sizew;
+	   int height = yc[i] + sizeh;
 
 	   if(width > tempw)
 	      tempw = width;
@@ -197,25 +203,25 @@ Image Scene::drawscene() const{
 	
 	//set the canvus size to the one found above
 	canvus.resize(tempw,temph);
-	Image tempRGB;
+	Image tem;
 
 	//drawing the images
-	for(int i = 0; i < currentlength; i++){
+	for(int i = 0; i < curlength; i++){
 
 	   if(images[i] != NULL){
 
 		int width = images[i]->width();
 		int height = images[i]->height();
 	
-		tempRGB = *images[i];
+		tem = *images[i];
 		
 	
 	      for(int x = 0; x < width; x++){
 	         for(int y = 0; y < height; y++){
 		
-		   canvus(x+xcords[i],y+ycords[i])->red = tempRGB(x,y)->red;
-		   canvus(x+xcords[i],y+ycords[i])->green = tempRGB(x,y)->green;
-		   canvus(x+xcords[i],y+ycords[i])->blue = tempRGB(x,y)->blue;
+		   canvus(x+xc[i],y+yc[i])->red = tem(x,y)->red;
+		   canvus(x+xc[i],y+yc[i])->green = tem(x,y)->green;
+		   canvus(x+xc[i],y+yc[i])->blue = tem(x,y)->blue;
 
 		}
 	      }
@@ -229,7 +235,7 @@ void Scene::clear(){
 	
 	
 	if(images != NULL){
-		for(int i = 0; i < currentlength -1 ; i++){
+		for(int i = 0; i < curlength; i++){
 			delete images[i];
 		
 		}
@@ -237,31 +243,31 @@ void Scene::clear(){
 	
 	delete images;
 	
-	if(xcords != NULL)
-		delete [] xcords;
-	if(ycords != NULL)
-		delete [] ycords;
+	if(xc != NULL)
+		delete [] xc;
+	if(yc != NULL)
+		delete [] yc;
 }
 
 void Scene::copy(const Scene & other){
 
-   currentlength = other.currentlength;
+   curlength = other.curlength;
    
 
-   xcords = new int[currentlength];
-   for(int i = 0; i < currentlength; i++)
-	xcords[i] = other.xcords[i];
+   xc = new int[curlength];
+   for(int i = 0; i < curlength; i++)
+	xc[i] = other.xc[i];
 
 
-   ycords = new int[currentlength];
-   for(int i = 0; i < currentlength; i++)
-	ycords[i] = other.ycords[i];
+   yc = new int[curlength];
+   for(int i = 0; i < curlength; i++)
+	yc[i] = other.yc[i];
 
 
   // if(images == NULL)
-	   images = new Image*[currentlength];
+	   images = new Image*[curlength];
    //else   
-	for(int i = 0; i < currentlength; i++){
+	for(int i = 0; i < curlength; i++){
 	   if(other.images[i] != NULL)
 		images[i] = new Image(*(other.images[i]));
 	   else

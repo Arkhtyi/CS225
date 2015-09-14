@@ -8,11 +8,11 @@ class Scene{
 
 	public:
 
-	int *xcords;
+	int *xc;
 
-	int *ycords;
+	int *yc;
 
-	int currentlength = 0;
+	int curlength = 0;
 
 	Image ** images = NULL;
 
