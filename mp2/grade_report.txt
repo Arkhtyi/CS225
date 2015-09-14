@@ -1,50 +1,12 @@
-Grading revision r8774 by tolar2, dated 2015-09-12 01:06:28.000922904 -0500 CDT
+Grading revision r9637 by slim43, dated 2015-09-13 18:41:11.000815954 -0500 CDT
 Monad Autograder
-Testing mp2 at 2015-09-13 00:49:48
+Testing mp2 at 2015-09-14 00:43:46
 
-"The primary purpose of the DATA statement is to give names to constants; instead of referring to pi as 3.141592653589793 at every appearance, the variable PI can be given that value with a DATA statement and used instead of the longer form of the constant. This also simplifies modifying the program, should the value of pi change." ~ FORTRAN manual for Xerox computers
+"You look at their elbows, they actually have many good theoretical elbows." ~ Prof. Jiawei Han
 
 Setting up test environment...
 Compiling...
 ================================================================
-image.cpp:9:20: warning: comparison of integers of different signs: 'int' and 'unsigned long' [-Wsign-compare]
-for(int i = 0; i+1 <= (this->width())/2 ; i++){
-               ~~~ ^  ~~~~~~~~~~~~~~~~~
-image.cpp:10:23: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
-   for(int j = 0; j+1 <= (this->height())  ; j++){
-                  ~~~ ^   ~~~~~~~~~~~~~~
-image.cpp:39:20: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
-for(int x = 0; x+1 <= (this->width()); x++){
-               ~~~ ^   ~~~~~~~~~~~~~
-image.cpp:40:23: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
-   for(int y = 0; y+1 <= (this->height()); y++){
-                  ~~~ ^   ~~~~~~~~~~~~~~
-image.cpp:71:20: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
-for(int x = 0; x+1 <= (this->width()); x++){
-               ~~~ ^   ~~~~~~~~~~~~~
-image.cpp:72:23: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
-   for(int y = 0; y+1 <= (this->height()); y++){
-                  ~~~ ^   ~~~~~~~~~~~~~~
-6 warnings generated.
-image.cpp:9:20: warning: comparison of integers of different signs: 'int' and 'unsigned long' [-Wsign-compare]
-for(int i = 0; i+1 <= (this->width())/2 ; i++){
-               ~~~ ^  ~~~~~~~~~~~~~~~~~
-image.cpp:10:23: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
-   for(int j = 0; j+1 <= (this->height())  ; j++){
-                  ~~~ ^   ~~~~~~~~~~~~~~
-image.cpp:39:20: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
-for(int x = 0; x+1 <= (this->width()); x++){
-               ~~~ ^   ~~~~~~~~~~~~~
-image.cpp:40:23: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
-   for(int y = 0; y+1 <= (this->height()); y++){
-                  ~~~ ^   ~~~~~~~~~~~~~~
-image.cpp:71:20: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
-for(int x = 0; x+1 <= (this->width()); x++){
-               ~~~ ^   ~~~~~~~~~~~~~
-image.cpp:72:23: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
-   for(int y = 0; y+1 <= (this->height()); y++){
-                  ~~~ ^   ~~~~~~~~~~~~~~
-6 warnings generated.
 
 
 Running tests...
