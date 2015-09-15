@@ -6,8 +6,8 @@ Scene::Scene (int max){
    for(int i = 0; i < curlength; i++){
       images[i] = NULL;
    }
-   xc = new int[max];
-   yc = new int[max];
+   xc = new int[max-1];
+   yc = new int[max-1];
     for(int i = 0; i < curlength; i++){
       xc[i] = 0;
       yc[i] = 0;
@@ -53,7 +53,7 @@ void Scene::changemaxlayers(int newmax){
 		   }
 	}
 
-	Image ** temp = new Image*[newmax];
+	Image ** temp = new Image*[newmax-1];
 	
 	for(int i = 0; i < newmax; i++){
 	
@@ -66,7 +66,7 @@ void Scene::changemaxlayers(int newmax){
 
 	delete [] images;
 
-	images = new Image*[newmax];
+	images = new Image*[newmax-1];
 	
 	for(int j = 0; j < newmax; j++){
 	   images[j] = temp[j];
@@ -83,7 +83,7 @@ void Scene::changemaxlayers(int newmax){
 //Memory leak
 void Scene::addpicture(const char * FileName, int index, int x, int y){
 
-	if(curlength < index){
+	if(curlength <= index){
 	   cout<<"index out of bounds"<<endl;
 	   return;
 	}

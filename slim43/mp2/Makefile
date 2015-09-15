@@ -1,12 +1,12 @@
 EXENAME = testimage
-OBJS = testimage.o png.o image.o rgbapixel.o scene.o
+OBJS = testimage.o png.o image.o rgbapixel.o 
 
 EXENAME2 = testscene
 OBJS2 = testscene.o png.o image.o rgbapixel.o scene.o
 
 
 CXX = clang++
-CXXFLAGS = -std=c++1y -stdlib=libc++ -c -g -O0 -Wall -Wextra -pedantic
+CXXFLAGS = -std=c++1y -stdlib=libc++ -c -g -O0 -Wall -Wextra -pedantic -w -MMD -MP -c
 LD = clang++
 LDFLAGS = -std=c++1y -stdlib=libc++ -lpng -lc++abi
 
