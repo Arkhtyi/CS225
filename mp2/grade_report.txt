@@ -1,8 +1,8 @@
-Grading revision r9637 by slim43, dated 2015-09-13 18:41:11.000815954 -0500 CDT
+Grading revision r10528 by slim43, dated 2015-09-14 17:35:41.000091311 -0500 CDT
 Monad Autograder
-Testing mp2 at 2015-09-14 00:43:46
+Testing mp2 at 2015-09-15 00:46:24
 
-"You look at their elbows, they actually have many good theoretical elbows." ~ Prof. Jiawei Han
+"int getRandomNumber() { return 4; } // chosen by fair dice roll. guaranteed to be random." ~ XKCD #221
 
 Setting up test environment...
 Compiling...
@@ -25,7 +25,7 @@ ImageAssignmentOperator  . . . . . [2 pts] - passed
 SceneGetPictureInvalidIndex  . . . [2 pts] - passed
 SceneChangeMaxLayersLarger . . . . [2 pts] - FAILED
 SceneChangeMaxLayersSmaller (asan) [1 pts] - FAILED
-SceneChangeMaxLayersInvalidChange  [2 pts] - FAILED
+SceneChangeMaxLayersInvalidChange  [2 pts] - passed
 SceneCopyCtor  . . . . . . . . . . [2 pts] - passed
 SceneCopyCtor2 . . . . . . . . . . [2 pts] - passed
 SceneAssignmentOperator  . . . . . [2 pts] - passed
@@ -39,7 +39,7 @@ SceneDrawScene4  . . . . . . . . . [3 pts] - FAILED
 SceneDrawSceneChangeLayer  . . . . [2 pts] - passed
 SceneDrawSceneDeletePicture  . . . [2 pts] - passed
 SceneDrawSceneTranslate  . . . . . [2 pts] - passed
-SceneDrawSceneTranslate2 . . . . . [2 pts] - FAILED
+SceneDrawSceneTranslate2 . . . . . [2 pts] - passed
 SceneTranslateInvalid  . . . . . . [2 pts] - passed
 SceneTranslateInvalid2 . . . . . . [1 pts] - passed
 SceneDeletePictureInvalid  . . . . [2 pts] - passed
@@ -50,5 +50,5 @@ SceneMakefile  . . . . . . . . . . [5 pts] - passed
 
 Total score...
 ================================================================
-TOTAL SCORE: 70
+TOTAL SCORE: 74
 
