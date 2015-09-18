@@ -58,7 +58,28 @@ Truck::Truck(const Vector2& pcenter)
 	wheels[2] = new Circle(Vector2(right, y), WHEEL_COLOR, WHEEL_RADIUS);
 	wheels[3] = new Circle(Vector2(right-WHEEL_RADIUS*2, y), WHEEL_COLOR, WHEEL_RADIUS);
 	wheels[4] = new Circle(Vector2(engine->center().x()-WHEEL_RADIUS, y), WHEEL_COLOR, WHEEL_RADIUS);
+
+
+	
 }
+
+void Truck::draw(PNG* canvas)const
+{	
+
+
+	trailer->draw(canvas);
+	cabin->draw(canvas);
+	window->draw(canvas);
+	engine->draw(canvas);
+
+	wheels[0]->draw(canvas);
+	wheels[1]->draw(canvas);
+	wheels[2]->draw(canvas);
+	wheels[3]->draw(canvas);
+	wheels[4]->draw(canvas);
+	
+}
+
 
 	Truck::Truck(const Truck& other)
 : center_(other.center_),
