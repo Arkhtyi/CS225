@@ -32,6 +32,14 @@ void List<T>::clear()
 {
     // @todo Graded in lab_gdb
     // Write this function based on mp3
+   	ListNode * temp = head;
+   while(temp != NULL){
+	temp= temp->next;	
+	delete head;
+	head = temp;
+	}
+   delete temp;
+    
 }
 
 /**
@@ -43,9 +51,15 @@ void List<T>::clear()
 template <class T>
 void List<T>::insertFront(T const & ndata)
 {
+ /// @todo Graded in MP3.1
+   ListNode * temp = new ListNode(ndata);
+   temp->next = head;
+   head = temp;
+   length++;
+}
     // @todo Graded in lab_gdb
     // Write this function based on mp3
-}
+
 
 /**
  * Inserts a new node at the back of the List.
@@ -59,16 +73,24 @@ void List<T>::insertBack( const T & ndata )
     // @todo Graded in lab_gdb
     // NOTE: Do not use this implementation for MP3!
     ListNode * temp = head;
-
+	
     if (temp == NULL)
     {
         head = new ListNode(ndata);
+        head->next = NULL;
+		length = 1;
     }
     else
     {
-        while (temp->next != NULL)
+        while (temp->next != NULL){
+        	
             temp = temp->next;
-        temp = new ListNode(ndata);
+        }
+        
+        temp -> next  = new ListNode(ndata);
+        
+        temp = temp->next;
+        
         length++;
     }
 }
@@ -97,7 +119,7 @@ typename List<T>::ListNode* List<T>::reverse( ListNode * curr, ListNode * prev, 
 {
     // @todo Graded in lab_gdb
     ListNode * temp;
-    if (len <= 0)
+    if (len <= 1)
     {
         curr->next = prev;
         return curr;
@@ -126,7 +148,8 @@ void List<T>::shuffle()
     // Find the center, and split the list in half
     // one should point at the start of the first half-list
     // two should point at the start of the second half-list
-    ListNode * one, * two, * prev, * temp;
+   ListNode * one, * two, * prev, * temp;
+    ListNode * temp2 = NULL;
     one = two = prev = temp = head;
 
     for (int i = 0; i < length/2; i++)
@@ -137,12 +160,14 @@ void List<T>::shuffle()
     prev->next = NULL;
 
     // interleave
-    while (two != NULL)
+    while (temp != NULL)
     {
         temp = one->next;
+	temp2 = two->next;
         one->next = two;
-        two = two->next;
-        one->next->next = temp;
+	two->next=temp;
+        two = temp2;
+        one = temp;
     }
 }
 
