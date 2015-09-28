@@ -61,6 +61,7 @@ void testInsertFront()
 	for (int i = 1; i <= 10; i++)
 		list.insertFront(i);
 
+
 	cout << "[testInsertFront]: " << list << endl;
 	cout << "[testInsertFront]: size: " << list.size() << endl;
 	if (list.size() != 10)
@@ -103,9 +104,21 @@ void testShuffle()
     List<int> list;
 	for (int i = 10; i > 0; i--)
 		list.insertFront(i);
+		
+	
+		
     cout << "[testShuffle]: before " << list << endl;
+   
     list.shuffle();
+   
     cout << "[testShuffle]: after " << list << endl;
+	
+	List<int> list2;
+	for (int i = 37; i > 0; i--)
+	list2.insertFront(i);	
+	cout << "[testShuffle]: before " << list2 << endl;
+	list2.shuffle();
+    cout << "[testShuffle]: after " << list2 << endl;
 }
 
 

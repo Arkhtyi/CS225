@@ -119,7 +119,11 @@ typename List<T>::ListNode* List<T>::reverse( ListNode * curr, ListNode * prev, 
 {
     // @todo Graded in lab_gdb
     ListNode * temp;
-    if (len <= 1)
+    
+    if (len == 0)
+    	return NULL;
+    
+    if (len == 1)
     {
         curr->next = prev;
         return curr;
@@ -151,22 +155,46 @@ void List<T>::shuffle()
    ListNode * one, * two, * prev, * temp;
     ListNode * temp2 = NULL;
     one = two = prev = temp = head;
+	
+	if(length == 0)
+		return;
 
-    for (int i = 0; i < length/2; i++)
-    {
-        prev = two;
-        two = two->next;
+	//if(length%2 == 1){
+		 while(temp != NULL)
+   		 {
+		    prev = two;
+		    two = two->next;
+		    
+		    if(temp->next != NULL)
+		    	temp = temp->next->next;
+		    else
+		    	temp = temp->next;
+		  }
+		  prev->next = NULL;
+   // }	
+
+	
+	
+ /*	if(length%2 == 0){
+	
+
+		for (int i = 0; i < length/2; i++)
+		{
+		    prev = two;
+		    two = two->next;
+		}
+		prev->next = NULL;
     }
-    prev->next = NULL;
-
+    
+*/
     // interleave
-    while (temp != NULL)
+    while (two != NULL)
     {
         temp = one->next;
-	temp2 = two->next;
         one->next = two;
-	two->next=temp;
+		temp2 = two->next;
         two = temp2;
+        one->next->next = temp;
         one = temp;
     }
 }
