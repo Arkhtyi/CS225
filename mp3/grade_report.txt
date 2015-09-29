@@ -1,8 +1,8 @@
-Grading revision r18170 by tolar2, dated 2015-09-27 00:58:29.000441597 -0500 CDT
+Grading revision r18841 by tolar2, dated 2015-09-28 01:24:08.000639998 -0500 CDT
 Monad Autograder
-Testing mp3 at 2015-09-28 01:08:02
+Testing mp3 at 2015-09-29 00:38:46
 
-"In the absence of our leader, I'm assuming control." ~ Kyle Johnson
+"Your job is not just what you're doing; it should be preparing you for what you want to do." ~ Michael Lopp
 
 Setting up test environment...
 Compiling...
