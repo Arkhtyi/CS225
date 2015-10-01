@@ -1,8 +1,8 @@
-Grading revision r19203 by tolar2, dated 2015-09-29 00:54:33.000556922 -0500 CDT
+Grading revision r19420 by tolar2, dated 2015-09-30 00:55:23.000685448 -0500 CDT
 Monad Autograder
-Testing mp3 at 2015-09-30 00:39:15
+Testing mp3 at 2015-10-01 00:35:30
 
-"**** ******** **** nickels!!!" ~ Chase Geigle
+"@return A voidean value indicating whether the test was successful." ~ lab_avl
 
 Setting up test environment...
 Compiling...
