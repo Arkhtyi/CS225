@@ -1,0 +1,57 @@
+Grading revision r22490 by slim43, dated 2015-10-04 20:24:18.000520862 -0500 CDT
+Monad Autograder
+Testing lab_quacks at 2015-10-05 00:43:28
+
+"Simplicity and elegance are unpopular because they require hard work and discipline to achieve and education to be appreciated." ~ Edsger Dijkstra
+
+Setting up test environment...
+Compiling...
+================================================================
+
+
+Running tests...
+================================================================
+sumDigits_762  . . . [3 pts]  - passed
+sumDigits_0  . . . . [2 pts]  - passed
+sumDigits_2  . . . . [2 pts]  - passed
+sumDigits_1024 . . . [3 pts]  - passed
+triangle_0 . . . . . [2 pts]  - passed
+triangle_1 . . . . . [2 pts]  - passed
+triangle_5 . . . . . [3 pts]  - passed
+triangle_10  . . . . [3 pts]  - passed
+sum_136  . . . . . . [20 pts] - passed
+sum_floats . . . . . [20 pts] - passed
+scramble_17  . . . . [20 pts] - passed
+scramble_10  . . . . [20 pts] - passed
+verifySame_result  . [10 pts] - FAILED: unit_tests.cpp:212: Expected true, returned false
+verifySame_no_modify [15 pts] - FAILED: unit_tests.cpp:274: Expected true, returned false
+
+
+Total score...
+================================================================
+TOTAL SCORE: 100
+
+
+
+Detailed test output...
+================================================================
+----------------------------------------------------------------
+verifySame_result [10 points]
+Result: FAILED: unit_tests.cpp:212: Expected true, returned false
+Took 0ms (1000ms timeout)
+Output:
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+verifySame_no_modify [15 points]
+Result: FAILED: unit_tests.cpp:274: Expected true, returned false
+Took 0ms (1000ms timeout)
+Output:
+----------------------------------------------------------------
+
+
+----------------------------------------------------------------
+Total score...
+================================================================
+TOTAL SCORE: 100
+
