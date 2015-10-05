@@ -22,9 +22,20 @@
  */
 template <typename T>
 T QuackFun::sum(stack<T> & s)
-{
+{	
+	
+	if(s.size() == 0)
+		return T();
+	else{	
+		T temp = s.top();
+		T temp2 = s.top();
+		s.pop();
+		temp = temp + sum(s);
+		s.push(temp2);
+		return temp;
+	}
     // Your code here
-    return T(); // stub return value (0 for primitive types). Change this!
+    // stub return value (0 for primitive types). Change this!
                 // Note: T() is the default value for objects, and 0 for
                 // primitive types
 }
@@ -43,10 +54,42 @@ T QuackFun::sum(stack<T> & s)
 template <typename T>
 void QuackFun::scramble(queue<T> & q)
 {
-    stack<T> s;
-    // optional: queue<T> q2;
+	int num = 2;
+	int t = 0;
+	stack<T> s;
+	queue<T> q2;
+	T temp = q.front();
+	q.push(q.front());
+	q.pop();
 
-    // Your code here
+
+	while(q.front() != temp ){
+		if(num%2 != 0){
+			if(q.front() != temp){
+				for(int i = 0; i < num; i++){
+					q.push(q.front());
+					q.pop();	
+			}
+			}
+		}
+		else if(num%2 == 0){
+			t = 0;
+			for(int j = 0; j < num; j++){
+				if(q.front() != temp){
+					s.push(q.front());
+					q.pop();
+					t++;				
+				}				
+			}
+			
+			for(int z = 0; z < t; z++){
+				q.push(s.top());
+				s.pop();
+			}			
+		}
+		num++;
+	}
+	// Your code here
 }
 
 /**
@@ -65,9 +108,34 @@ template <typename T>
 bool QuackFun::verifySame(stack<T> & s, queue<T> & q)
 {
     bool retval = true; // optional
-    //T temp1; // rename me
-    //T temp2; // rename :)
+    T amori; // rename me
+    T machina; // rename :)
+	
+	//base case. 
+	if(s.size() == 1 ){
+		if(s.top() == q.back()){
+			q.push(q.front());
+			q.pop();
+			return true;
+		}
+		
+			q.push(q.front());
+			q.pop();
+			return false;
+		
+	}
+	else{	
+		retval = (s.top() == q.front());
+		amori = q.front();
+		machina = s.top();
+		s.pop();
+		if(retval == true)
+			retval = verifySame(s,q);
+		
+		s.push(machina);
+		return retval;
+	}
     
-    return retval;
+    
 }
 
