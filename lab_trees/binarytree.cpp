@@ -75,6 +75,31 @@ void BinaryTree<T>::printLeftToRight(const Node * subRoot) const
 template <typename T>
 void BinaryTree<T>::mirror()
 {
+
+	mirror(root);
+	// your code here
+}
+
+
+template <typename T>
+void BinaryTree<T>::mirror(Node * sRoot)
+{
+	Node * temp;
+
+	if(sRoot == NULL)
+		return;
+	if(sRoot->left == NULL && sRoot->right == NULL)
+		return;
+	else{
+		temp = sRoot->left;
+		sRoot->left = sRoot->right;
+		sRoot->right = temp;
+		mirror(sRoot->left);
+		mirror(sRoot->right);
+	
+	
+	}
+	
 	// your code here
 }
 
@@ -86,9 +111,37 @@ void BinaryTree<T>::mirror()
 template <typename T>
 bool BinaryTree<T>::isOrdered() const
 {
-    // your code here
-	return false;
+	Node * temp = NULL;	
+	
+    return isOrdered(root, temp);
 }
+
+template <typename T>
+bool BinaryTree<T>::isOrdered(Node * subRoot, Node * &temp) const
+{
+	if(subRoot == NULL)
+		return true;
+
+		
+    if(isOrdered(subRoot->left, temp) == false)
+    	return false;
+    	
+    if(temp == NULL)
+    	temp = subRoot;
+    
+	else if(subRoot->elem <= temp->elem)
+    	return false;
+    	
+    temp = subRoot;
+    
+    
+    if(isOrdered(subRoot->right, temp) == false)
+    	return false;
+    
+    return true;
+	
+}
+
 
 /**
  * Prints out all the possible paths from the root of the tree to any leaf node.
@@ -99,6 +152,36 @@ bool BinaryTree<T>::isOrdered() const
 template <typename T>
 void BinaryTree<T>::printPaths() const
 {
+	list<T> tempo;
+	printPaths(root,tempo);
+    // your code here
+}
+
+template <typename T>
+void BinaryTree<T>::printPaths(Node * subRoot, list<T> path) const
+{	
+	
+	if(subRoot == NULL)
+		return;
+
+	if(subRoot->left == NULL && subRoot->right == NULL){
+			path.push_back(subRoot->elem);
+			size_t temp = path.size();
+			cout << "Path:";
+			for(size_t i = 0; i < temp; i++){
+				cout<< ' ' << path.front();
+				path.pop_front();	
+			}
+			cout<<endl;
+			return;
+		}
+	else{
+	
+		path.push_back(subRoot->elem);
+		printPaths(subRoot->left , path);	
+		printPaths(subRoot->right , path);
+		
+	}
     // your code here
 }
 
@@ -112,6 +195,24 @@ void BinaryTree<T>::printPaths() const
 template <typename T>
 int BinaryTree<T>::sumDistances() const
 {
-    // your code here
-    return -1;
+    
+    return sumDistances(root, -1);
+}
+
+
+template <typename T>
+int BinaryTree<T>::sumDistances(Node * subRoot, int dist) const
+{
+    if(subRoot == NULL)
+	    return 0;
+	if(subRoot->left == NULL && subRoot->right == NULL){
+		dist++;
+		return dist;
+	}
+	else{
+		dist++;
+		
+		return dist + sumDistances(subRoot->left, dist) + sumDistances(subRoot->right,dist);	
+		
+	}	
 }
