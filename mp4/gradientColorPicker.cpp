@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include "gradientColorPicker.h"
 
+
+
 /**
  * Constructs a new gradientColorPicker.
  *
@@ -16,6 +18,13 @@ gradientColorPicker::gradientColorPicker( RGBAPixel fadeColor1,
 	 * @todo Construct your gradientColorPicker here! You may find it
 	 *	helpful to create additional member variables to store things.
 	 */
+	 
+	 color1 = fadeColor1;
+	 color2 = fadeColor2;
+	 rad = radius;
+	 centX = centerX;
+	 centY = centerY;
+	 
 }
 
 /**
@@ -50,6 +59,20 @@ gradientColorPicker::gradientColorPicker( RGBAPixel fadeColor1,
 RGBAPixel gradientColorPicker::operator()(int x, int y)
 {
 	RGBAPixel color;
+	int d = abs(centX-x) + abs(centY-y);
+	
+	if(d<=rad){
+		color.red = color1.red-((d*color1.red)/rad) + ((d*color2.red)/rad);
+		color.green = color1.green-((d*color1.green)/rad) + ((d*color2.green)/rad);
+		color.blue = color1.blue-((d*color1.blue)/rad) + ((d*color2.blue)/rad);
+	}
+	else{
+		color.red = color2.red;
+		color.green = color2.green;
+		color.blue = color2.blue;
+	}
+	
+	
 	/**
 	 * @todo Return the correct color here!
 	 */
