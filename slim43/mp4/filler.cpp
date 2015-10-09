@@ -8,13 +8,19 @@
  */
 #include "filler.h"
 
+#include <utility>
+
+
 animation filler::dfs::fillSolid( PNG & img, int x, int y, 
         RGBAPixel fillColor, int tolerance, int frameFreq ) {
     /**
      * @todo Your code here! You should replace the following line with a
      *  correct call to fill with the correct colorPicker parameter.
      */
-    return animation();
+    solidColorPicker solid(fillColor);
+    
+        
+    return fill(img, x, y, solid, tolerance, frameFreq);
 }
 
 animation filler::dfs::fillGrid( PNG & img, int x, int y, 
@@ -23,7 +29,10 @@ animation filler::dfs::fillGrid( PNG & img, int x, int y,
      * @todo Your code here! You should replace the following line with a
      *  correct call to fill with the correct colorPicker parameter.
      */
-    return animation();
+    
+    gridColorPicker grid(gridColor, gridSpacing); 
+     
+    return fill(img, x, y, grid, tolerance, frameFreq);
 }
 
 animation filler::dfs::fillGradient( PNG & img, int x, int y, 
@@ -33,8 +42,12 @@ animation filler::dfs::fillGradient( PNG & img, int x, int y,
      * @todo Your code here! You should replace the following line with a
      *  correct call to fill with the correct colorPicker parameter.
      */
-    return animation();
+    
+    gradientColorPicker gradient(fadeColor1, fadeColor2, radius, x, y);
+     
+    return fill(img, x, y, gradient, tolerance, frameFreq);
 }
+
 
 animation filler::dfs::fill( PNG & img, int x, int y, 
         colorPicker & fillColor, int tolerance, int frameFreq ) {
@@ -43,7 +56,9 @@ animation filler::dfs::fill( PNG & img, int x, int y,
      *  correct call to filler::fill with the correct template parameter
      *  indicating the ordering structure to be used in the fill.
      */
-    return animation();
+     
+     
+    return filler::fill<Stack>(img, x, y, fillColor, tolerance, frameFreq);
 }
 
 animation filler::bfs::fillSolid( PNG & img, int x, int y, 
@@ -52,16 +67,22 @@ animation filler::bfs::fillSolid( PNG & img, int x, int y,
      * @todo Your code here! You should replace the following line with a
      *  correct call to fill with the correct colorPicker parameter.
      */
-    return animation();
+     
+    solidColorPicker solid(fillColor);
+    
+         
+    return fill(img, x, y, solid, tolerance, frameFreq);
 }
 
 animation filler::bfs::fillGrid( PNG & img, int x, int y, 
         RGBAPixel gridColor, int gridSpacing, int tolerance, int frameFreq ) {
-    /**
+    /**mp4.2
      * @todo Your code here! You should replace the following line with a
      *  correct call to fill with the correct colorPicker parameter.
      */
-    return animation();
+    gridColorPicker grid(gridColor, gridSpacing); 
+     
+    return fill(img, x, y, grid, tolerance, frameFreq);
 }
 
 animation filler::bfs::fillGradient( PNG & img, int x, int y, 
@@ -71,7 +92,9 @@ animation filler::bfs::fillGradient( PNG & img, int x, int y,
      * @todo Your code here! You should replace the following line with a
      *  correct call to fill with the correct colorPicker parameter.
      */
-    return animation();
+     gradientColorPicker gradient(fadeColor1, fadeColor2, radius, x, y);
+     
+    return fill(img, x, y, gradient, tolerance, frameFreq);
 }
 
 animation filler::bfs::fill( PNG & img, int x, int y, 
@@ -81,7 +104,7 @@ animation filler::bfs::fill( PNG & img, int x, int y,
      *  correct call to filler::fill with the correct template parameter
      *  indicating the ordering structure to be used in the fill.
      */
-    return animation();
+    return filler::fill<Queue>(img, x, y, fillColor, tolerance, frameFreq);
 }
 
 template <template <class T> class OrderingStructure>
@@ -96,7 +119,7 @@ animation filler::fill( PNG & img, int x, int y,
      * fill, that structure is a Queue, for a depth-first-search, that
      * structure is a Stack. To begin the algorithm, you simply place the
      * given point in the ordering structure. Then, until the structure is
-     * empty, you do the following:
+     * empty, you do the following: 
      *
      * 1.     Remove a point from the ordering structure. 
      *
@@ -141,5 +164,107 @@ animation filler::fill( PNG & img, int x, int y,
      *        have been checked. So if frameFreq is set to 1, a pixel should
      *        be filled every frame.
      */
-    return animation();
+    
+    animation mainframe;
+    
+    
+    
+    int row = img.height();
+    int col = img.width(); 
+    
+    int xcord = x;
+    int ycord = y;
+        
+    int counter = 0;
+    
+    //Every fill algorithm requires an ordering structure
+    OrderingStructure <int> tempx;
+    OrderingStructure <int> tempy;
+    
+    //making arrays for checking if pixel is processed already
+    bool ** processed = new bool* [col];
+    for(int i = 0; i < col; i++){
+    	processed[i] = new bool[row];
+    	for(int j = 0; j < row; j++){
+    		processed[i][j] = false;
+    	}
+    }
+    
+  
+    // you simply place the given point in the ordering structure
+    tempx.add(xcord);
+    tempy.add(ycord);
+    
+    
+    
+    RGBAPixel origin = *img(x,y);
+    
+    
+	//Then, until the structure is empty, you do the following
+    while(tempx.isEmpty() == false && tempy.isEmpty() == false){
+    	
+       	//Remove a point from the ordering structure.
+    	xcord = tempx.peek();
+    	ycord = tempy.peek();
+        	
+        
+		tempx.remove();
+		tempy.remove();	
+    	
+    	
+    	int redval = img(xcord,ycord)->red-origin.red;
+    	int greenval = img(xcord,ycord)->green-origin.green;
+    	int blueval = img(xcord,ycord)->blue-origin.blue;
+    	
+    	
+    	//If it has not been processed before and if its color is within the tolerance distance
+    	if(!processed[xcord][ycord] ){
+    		//indicate somehow that it has been processedprocessed[xcord][ycord] = true
+    		processed[xcord][ycord] = true;
+     		if (redval*redval + greenval*greenval + blueval*blueval <= tolerance){
+				//change its color in the image using the appropriate colorPicker
+				*img(xcord,ycord) = fillColor(xcord,ycord);
+				
+				
+				//add all of its neighbors to the ordering structure
+				if(xcord+1 < row && ycord < col ) {
+					tempx.add(xcord+1);
+					tempy.add(ycord);
+					}
+				if(xcord < row  && ycord + 1 < col ) {
+					tempx.add(xcord);
+					tempy.add(ycord+1);
+					}
+				if(xcord-1 >= 0 && xcord-1 < row && ycord < col ) {
+					tempx.add(xcord-1);
+					tempy.add(ycord);
+					}
+				if(xcord < row && ycord-1 < col && ycord -1 >= 0 ) {
+					tempx.add(xcord);
+					tempy.add(ycord-1);
+					}
+				
+			
+			//if it is the appropriate frame, send the current PNG to the animation 
+				counter++;
+				if(counter % frameFreq == 0){
+					counter = 0;
+					mainframe.addFrame(img);
+				} 
+			}
+			
+		}
+		
+		
+    }
+       
+   	for(int i = 0; i < col; i++){
+    	delete [] processed[i];
+    } 
+    
+    delete [] processed;
+       
+    return mainframe;
+
 }
+

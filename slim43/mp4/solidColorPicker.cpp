@@ -7,6 +7,8 @@
  */
 solidColorPicker::solidColorPicker(RGBAPixel fillColor)
 {
+
+	CurrColor = fillColor;
 	/**
 	 * @todo Initialize a new solidColorPicker here!
 	 */
@@ -24,5 +26,5 @@ RGBAPixel solidColorPicker::operator()(int x, int y)
 	 * @todo Return the appropriate color here! You will have to replace
 	 *	the following line.
 	 */
-	return RGBAPixel();
+	return CurrColor;
 }

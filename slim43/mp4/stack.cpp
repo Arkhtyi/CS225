@@ -23,6 +23,9 @@ void Stack<T>::push(T const & newItem)
     /**
      * @todo Your code here!
      */
+     
+     myStack.push_front(newItem);
+     
 }
 
 /**
@@ -40,7 +43,12 @@ T Stack<T>::pop()
     /**
      * @todo Your code here! You will have to replace the following line.
      */
-    return T();
+     
+   
+    T temp = myStack.front();
+    myStack.pop_front(); 
+    
+    return temp;
 }
 
 /**
@@ -54,6 +62,8 @@ void Stack<T>::add( const T & theItem ) {
      * @todo Your code here! Hint: this should call another Stack function
      *  to add the element to the Stack.
      */
+     
+     this->push(theItem);
 }
 
 /**
@@ -68,7 +78,11 @@ T Stack<T>::remove() {
      *  to remove an element from the Stack and return it. You will need to
      *  replace the following line.
      */
-    return T();
+     
+    T temp = myStack.front();
+    this->pop();
+     
+    return temp;
 }
 
 /**
@@ -87,7 +101,7 @@ T Stack<T>::peek()
     /**
      * @todo Your code here! You will need to replace the following line.
      */
-    return T();
+    return myStack.front();
 }
 
 /**
@@ -104,5 +118,5 @@ bool Stack<T>::isEmpty() const
     /**
      * @todo Your code here! You will need to replace the following line.
      */
-    return true;
+    return myStack.empty();
 }
