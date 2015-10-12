@@ -1,0 +1,23 @@
+Grading revision r24338 by slim43, dated 2015-10-09 16:00:08.000121567 -0500 CDT
+Monad Autograder
+Testing lab_trees at 2015-10-12 02:15:56
+
+"It is practically impossible to teach good programming to students that have had a prior exposure to BASIC: as potential programmers they are mentally mutilated beyond hope of regeneration." ~ Edsger Dijkstra
+
+Setting up test environment...
+Compiling...
+================================================================
+
+
+Running tests...
+================================================================
+test_isOrdered  . [33 pts] - passed
+test_mirror . . . [33 pts] - passed
+test_printPaths . [34 pts] - passed
+test_sumDistances [25 pts] - passed
+
+
+Total score...
+================================================================
+TOTAL SCORE: 125
+
