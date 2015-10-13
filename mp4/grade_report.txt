@@ -1,8 +1,8 @@
-Grading revision r25019 by tolar2, dated 2015-10-11 01:49:04.0004643 -0500 CDT
+Grading revision r25760 by tolar2, dated 2015-10-12 01:52:09.000484457 -0500 CDT
 Monad Autograder
-Testing mp4 at 2015-10-12 01:20:05
+Testing mp4 at 2015-10-13 01:17:16
 
-"The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time." ~ Tom Cargill
+"Any sufficiently advanced bug is indistinguishable from a feature." ~ Rich Kulawiec
 
 Setting up test environment...
 Compiling...
