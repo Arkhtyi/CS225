@@ -1,8 +1,8 @@
-Grading revision r25760 by tolar2, dated 2015-10-12 01:52:09.000484457 -0500 CDT
+Grading revision r25936 by tolar2, dated 2015-10-13 01:49:51.000459517 -0500 CDT
 Monad Autograder
-Testing mp4 at 2015-10-13 01:17:16
+Testing mp4 at 2015-10-14 01:14:32
 
-"Any sufficiently advanced bug is indistinguishable from a feature." ~ Rich Kulawiec
+"You *could* call it an ape, and that an ape, but that would just be phylogenic pettifogging." ~ D.A. Forsyth
 
 Setting up test environment...
 Compiling...
