@@ -1,8 +1,8 @@
-Grading revision r25936 by tolar2, dated 2015-10-13 01:49:51.000459517 -0500 CDT
+Grading revision r26128 by tolar2, dated 2015-10-14 01:46:22.000477891 -0500 CDT
 Monad Autograder
-Testing mp4 at 2015-10-14 01:14:32
+Testing mp4 at 2015-10-15 02:53:50
 
-"You *could* call it an ape, and that an ape, but that would just be phylogenic pettifogging." ~ D.A. Forsyth
+"Even if by chance this world should end tomorrow, if it's together with you, would 'I'm okay with that too' be the cool attitude you'd take?" ~ Makino Yui
 
 Setting up test environment...
 Compiling...
