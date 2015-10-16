@@ -1,8 +1,8 @@
-Grading revision r26128 by tolar2, dated 2015-10-14 01:46:22.000477891 -0500 CDT
+Grading revision r26591 by tolar2, dated 2015-10-15 03:24:49.000087723 -0500 CDT
 Monad Autograder
-Testing mp4 at 2015-10-15 02:53:50
+Testing mp4 at 2015-10-16 01:15:50
 
-"Even if by chance this world should end tomorrow, if it's together with you, would 'I'm okay with that too' be the cool attitude you'd take?" ~ Makino Yui
+"If you think you can do it all, you're thinking too small." ~ Michael Lopp
 
 Setting up test environment...
 Compiling...
