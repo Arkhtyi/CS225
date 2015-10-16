@@ -29,4 +29,4 @@ CS 225, Fall 2015, Midterm 1, Exam number 211, version 1
   24   XList Part 5             10      10
 ----- -------------- --------- ----- -------
               Total             116      88
- Normalized score = 75.00
+ Normalized score = 75.86
