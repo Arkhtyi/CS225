@@ -15,9 +15,7 @@
 
 class Quadtree
 {
-	public:
-	
-	
+
 	
 	private:
 
@@ -33,11 +31,71 @@ class Quadtree
 		QuadtreeNode* seChild;  // pointer to southeast child
 
 		RGBAPixel element;  // the pixel stored as this node's "data"
+		
+		int xcord;
+		int ycord;
+		int pixres;
+		
+		QuadtreeNode(){
+			nwChild = NULL;
+			neChild = NULL;
+			swChild = NULL;
+			seChild = NULL;
+		}
+		
+		QuadtreeNode(RGBAPixel value){
+			element = value;
+			nwChild = NULL;
+			neChild = NULL;
+			swChild = NULL;
+			seChild = NULL;
+		
+		
+		
+		};
 	};
+
+	
+	int res;
+	
 	
 	QuadtreeNode* root;    // pointer to root of quadtree
 	
+	public:
 	
+	
+	Quadtree();
+	Quadtree(PNG const & source, int resolution);
+	
+	void copy(QuadtreeNode * &node, QuadtreeNode * node2 );
+	
+	Quadtree(Quadtree const & other);
+	~Quadtree();
+	
+	void clear(QuadtreeNode * node);
+		
+	void buildTree(PNG const & source, int resolution);
+	QuadtreeNode * buildTree(PNG const & source, int xstart, int ystart, int resolution);
+	
+	
+	RGBAPixel getPixel(int x, int y) const;
+	RGBAPixel getPixel(int x, int y, QuadtreeNode * node) const;
+	
+	PNG decompress();
+	void decompress(QuadtreeNode * node, PNG & temp, int x, int y);
+	
+	void prune(int tolerance);
+	bool prunechecker(QuadtreeNode * node, int tolerance, RGBAPixel base) const;
+	void prune(QuadtreeNode * node, int tolerance);
+	int pruneSize (int  tolerance)const;
+	void pruneSize (QuadtreeNode * node, int tolerance, int & count) const;
+	int idealPrune (int numLeaves) const;
+	
+	Quadtree const & operator= (Quadtree const & other);
+	
+	void clockwiseRotate( );
+	void clockwiseRotate(QuadtreeNode * node);
+
 	
 	/**** Functions added for testing/grading                ****/
 	/**** Do not remove this line or copy its contents here! ****/
