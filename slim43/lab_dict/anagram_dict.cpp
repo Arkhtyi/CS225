@@ -20,9 +20,20 @@ using std::ifstream;
  * words.
  * @param filename The name of the word list file.
  */ 
+ 
+ 
 AnagramDict::AnagramDict(const string& filename)
 {
-    /* Your code goes here! */
+    /* Your code goes here! 
+    ifstream wordsFile(filename);
+    string word;
+    if (wordFile.is_open()){
+    	while (getline(wordsFile, word)) {
+    		dict
+    	}
+    
+    }
+    */
 }
 
 /** 
