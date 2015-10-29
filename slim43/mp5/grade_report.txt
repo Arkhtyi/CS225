@@ -1,8 +1,8 @@
-Grading revision r33328 by tolar2, dated 2015-10-27 01:43:49.000663889 -0500 CDT
+Grading revision r33863 by tolar2, dated 2015-10-28 01:17:18.000162327 -0500 CDT
 Monad Autograder
-Testing mp5 at 2015-10-28 00:48:44
+Testing mp5 at 2015-10-29 00:50:57
 
-"Java is, in many ways, C++-." ~ Michael Feldman
+"I can calculate the motions of the heavenly bodies, but not the madness of people." ~ Isaac Newton
 
 Setting up test environment...
 Compiling...
