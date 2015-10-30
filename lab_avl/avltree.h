@@ -77,6 +77,7 @@ class AVLTree
 		 * Frees all nodes associated with this tree and sets it to be empty.
 		 */
 		void clear();
+		
 
 		/**
 		 * Inserts into the AVLTree.
@@ -152,6 +153,7 @@ class AVLTree
          * @return the height of the node if it's non-NULL or -1 if it is NULL
          */
 		int heightOrNeg1(const Node* node) const;
+		int heightOrNeg2(const Node* node) const;
 
 		/**
 		 * Helper function for operator= and cctor.
