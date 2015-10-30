@@ -1,8 +1,8 @@
-Grading revision r33863 by tolar2, dated 2015-10-28 01:17:18.000162327 -0500 CDT
+Grading revision r34383 by tolar2, dated 2015-10-29 01:12:47.000799491 -0500 CDT
 Monad Autograder
-Testing mp5 at 2015-10-29 00:50:57
+Testing mp5 at 2015-10-30 01:02:07
 
-"I can calculate the motions of the heavenly bodies, but not the madness of people." ~ Isaac Newton
+"There's an old story about the person who wished his computer were as easy to use as his telephone. That wish has come true, since I no longer know how to use my telephone." ~ Bjarne Stroustrup
 
 Setting up test environment...
 Compiling...
