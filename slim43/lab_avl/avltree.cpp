@@ -28,23 +28,6 @@ V AVLTree<K, V>::find(Node * subtree, const K & key) const
 
 
 template <class K, class V>
-int AVLTree<K, V>::heightOrNeg2(const Node* node) const
-{	if(node == NULL)
-		return -1;
-	else if (node->right == NULL && node ->left == NULL){
-		node->height = 1;
-		return 1;
-	}else{
-		node->height = max(heightOrNeg1(node->left),heightOrNeg1(node->right))+1;	
-		return node->height;
-	}
-	
-	
-
-}
-
-
-template <class K, class V>
 void AVLTree<K, V>::rotateLeft(Node * & t)
 {
 	*_out << __func__ << endl; // Outputs the rotation name (don't remove this)
@@ -53,9 +36,10 @@ void AVLTree<K, V>::rotateLeft(Node * & t)
     Node * y = t->right;
 	t->right = y->left;
 	y ->left = t;
-	t->height = heightOrNeg1(t);
 	t = y;
-	t->height = heightOrNeg1(t);
+	t->height--;
+	t->left->height++;
+	t->right->height--;
     
 }
 
