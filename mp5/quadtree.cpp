@@ -157,12 +157,35 @@ RGBAPixel Quadtree:: getPixel(int x, int y) const{
 
 }
 
+/*
+RGBAPixel Quadtree:: getPixel(int x, int y, QuadtreeNode * node, int resolution) const{
+
+	if(resolution == 1)
+		return node->element;
+	
+	if(getPixel(x,y,node->nwChild,resolution/2) != NULL)
+		return getPixel(x,y,node->nwChild,resolution/2) 
+	if(getPixel(x+resolution/2,y,node->nwChild,resolution/2) != NULL)
+		return getPixel(x,y,node->nwChild,resolution/2) 
+	if(getPixel(x,y,node->nwChild+resolution/2,resolution/2) != NULL)
+		return getPixel(x,y,node->swChild,resolution/2) 
+	if(getPixel(x+resolution/2,y,node->nwChild+resolution/2,resolution/2) != NULL)
+		return getPixel(x,y,node->seChild,resolution/2)
+	
+	else{
+		return  RGBAPixel();
+
+	}
+
+
+}
+*/
 
 RGBAPixel Quadtree:: getPixel(int x, int y, QuadtreeNode * node) const{
 
 	
 
-	if(x == node->xcord && y == node->ycord)
+	if(node->nwChild == NULL && node->neChild == NULL && node->swChild == NULL && node->seChild == NULL)
 		return node->element;
 
 	if(x > node->xcord  && x < node->xcord + (node->pixres/2) && y > node->ycord && y < node->ycord + (node->pixres/2))
@@ -174,8 +197,8 @@ RGBAPixel Quadtree:: getPixel(int x, int y, QuadtreeNode * node) const{
 	if(x > node->xcord + (node->pixres/2) && x < node->xcord + node->pixres && y >node->ycord+(node->pixres/2) && y < node->ycord + node->pixres)
 		return getPixel(x,y,node->seChild);
 	else{
-		RGBAPixel * temp = new RGBAPixel();
-		return *temp;
+
+		return RGBAPixel();
 
 	}
 
