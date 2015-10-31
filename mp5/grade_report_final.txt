@@ -1,0 +1,109 @@
+Grading revision r36273 by slim43, dated 2015-10-30 19:29:47.000130832 -0500 CDT
+Monad Autograder
+Testing mp5 at 2015-10-31 00:51:21
+
+"Java is, in many ways, C++-." ~ Michael Feldman
+
+Setting up test environment...
+Compiling...
+================================================================
+
+
+Running tests...
+================================================================
+test_default_ctor  . . . . [1 pts] - passed
+test_ctor_1  . . . . . . . [1 pts] - passed
+test_ctor_2  . . . . . . . [2 pts] - passed
+test_buildTree_1 . . . . . [2 pts] - passed
+test_buildTree_2 . . . . . [1 pts] - passed
+test_buildTree_3 . . . . . [2 pts] - passed
+test_cctor_1 . . . . . . . [1 pts] - passed
+test_cctor_2 . . . . . . . [1 pts] - passed
+test_cctor_3 . . . . . . . [1 pts] - passed
+test_cctor_4 . . . . . . . [1 pts] - passed
+test_assign_op_1 . . . . . [1 pts] - passed
+test_assign_op_2 . . . . . [1 pts] - passed
+test_assign_op_3 . . . . . [1 pts] - passed
+test_assign_op_4 . . . . . [1 pts] - passed
+test_getPixel_1  . . . . . [1 pts] - passed
+test_getPixel_2  . . . . . [2 pts] - passed
+test_getPixel_3  . . . . . [2 pts] - passed
+test_getPixel_4  . . . . . [2 pts] - passed
+test_decompress_unpruned_1 [1 pts] - passed
+test_decompress_unpruned_2 [1 pts] - passed
+test_decompress_unpruned_3 [1 pts] - passed
+test_decompress_unpruned_4 [1 pts] - passed
+time_getPixel_logn . . . . [4 pts] - FAILED: Segmentation fault
+time_decompress_n (asan) . [4 pts] - passed
+valgrind_big3 (asan) . . . [4 pts] - passed
+test_clockwiseRotate_1 . . [1 pts] - passed
+test_clockwiseRotate_2 . . [1 pts] - passed
+test_clockwiseRotate_3 . . [2 pts] - passed
+test_clockwiseRotate_4 . . [2 pts] - passed
+test_prune_1 . . . . . . . [2 pts] - passed
+test_prune_2 . . . . . . . [3 pts] - passed
+test_prune_3 . . . . . . . [2 pts] - passed
+test_prune_4 . . . . . . . [5 pts] - passed
+test_prune_copy  . . . . . [2 pts] - passed
+test_prune_rotate  . . . . [2 pts] - passed
+test_prune_getPixel  . . . [3 pts] - FAILED: Segmentation fault
+test_pruneSize_1 . . . . . [2 pts] - passed
+test_pruneSize_2 . . . . . [2 pts] - passed
+test_pruneSize_3 . . . . . [2 pts] - passed
+test_pruneSize_4 . . . . . [2 pts] - passed
+test_pruneSize_5 . . . . . [2 pts] - passed
+test_idealPrune_1  . . . . [2 pts] - passed
+test_idealPrune_2  . . . . [3 pts] - passed
+test_idealPrune_3  . . . . [2 pts] - passed
+test_idealPrune_4  . . . . [5 pts] - passed
+val_clockwiseRotate (asan) [2 pts] - passed
+val_prune (asan) . . . . . [4 pts] - passed
+val_idealPrune (asan)  . . [3 pts] - passed
+test_const_correctness . . [4 pts] - FAILED: unit_tests.cpp:515: [system("clang++ -stdlib=libc++ -std=c++1y -c -w main2.cpp") => 1] != [0 => 0]
+
+
+Total score...
+================================================================
+TOTAL SCORE: 89
+
+
+
+Detailed test output...
+================================================================
+----------------------------------------------------------------
+time_getPixel_logn [4 points]
+Result: FAILED: Segmentation fault
+Took 0ms (60000ms timeout)
+Output:
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+test_prune_getPixel [3 points]
+Result: FAILED: Segmentation fault
+Took 0ms (10000ms timeout)
+Output:
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+test_const_correctness [4 points]
+Result: FAILED: unit_tests.cpp:515: [system("clang++ -stdlib=libc++ -std=c++1y -c -w main2.cpp") => 1] != [0 => 0]
+Took 0ms (20000ms timeout)
+Output:
+----------------------------------------------------------------
+main2.cpp:24:25: error: no matching member function for call to 'decompress'
+   PNG temp = constTree.decompress();
+              ~~~~~~~~~~^~~~~~~~~~
+./quadtree.h:84:6: note: candidate function not viable: 'this' argument has type 'const Quadtree', but method is not marked const
+        PNG decompress();
+            ^
+./quadtree.h:85:7: note: candidate function not viable: requires 4 arguments, but 0 were provided
+        void decompress(QuadtreeNode * node, PNG & temp, int x, int y);
+             ^
+1 error generated.
+
+
+----------------------------------------------------------------
+Total score...
+================================================================
+TOTAL SCORE: 89
+
