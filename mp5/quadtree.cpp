@@ -185,16 +185,16 @@ RGBAPixel Quadtree:: getPixel(int x, int y, QuadtreeNode * node) const{
 
 	
 
-	if(node->nwChild == NULL && node->neChild == NULL && node->swChild == NULL && node->seChild == NULL)
+	if(x == node->xcord && y == node -> ycord && node->pixres == 1)
 		return node->element;
 
-	if(x > node->xcord  && x < node->xcord + (node->pixres/2) && y > node->ycord && y < node->ycord + (node->pixres/2))
+	if((x >= node->nwChild->xcord && x< (node->nwChild->xcord+node->nwChild->pixres))&& (y >= node->nwChild->ycord  && y < (node->nwChild->ycord + node->nwChild->pixres)))
 		return getPixel(x,y,node->nwChild);
-	if(x < node->xcord + node->pixres && x > node->xcord + (node->pixres/2) && y > node->ycord && y < node->ycord + (node->pixres/2))
+	else if((x >= node->neChild->xcord && x< (node->neChild->xcord+node->neChild->pixres))&& (y >= node->neChild->ycord && y < (node->neChild->ycord + node->neChild->pixres)))
 		return getPixel(x,y,node->neChild);
-	if(x > node->xcord && x < node->xcord + (node->pixres/2) && y > node->ycord + (node->pixres/2) && y < node->ycord + node->pixres)
+	else if((x >= node->swChild->xcord && x< (node->swChild->xcord+node->swChild->pixres))&& (y >= node->swChild->ycord && y < (node->swChild->ycord + node->swChild->pixres)))
 		return getPixel(x,y,node->swChild);
-	if(x > node->xcord + (node->pixres/2) && x < node->xcord + node->pixres && y >node->ycord+(node->pixres/2) && y < node->ycord + node->pixres)
+	else if((x >= node->seChild->xcord && x< (node->seChild->xcord+node->seChild->pixres))&& (y >= node->seChild->ycord && y < (node->seChild->ycord + node->seChild->pixres)))
 		return getPixel(x,y,node->seChild);
 	else{
 
