@@ -33,13 +33,16 @@ void AVLTree<K, V>::rotateLeft(Node * & t)
 	*_out << __func__ << endl; // Outputs the rotation name (don't remove this)
     // your code here
     
+    if(t == NULL)
+    	return;
+    
     Node * y = t->right;
 	t->right = y->left;
 	y ->left = t;
 	t = y;
-	t->height--;
-	t->left->height++;
-	t->right->height--;
+	t->left->height = max(heightOrNeg1(t->left->left), heightOrNeg1(t->left->right))+1;
+	t->right->height = max(heightOrNeg1(t->right->left), heightOrNeg1(t->right->right))+1;
+	t->height = max(heightOrNeg1(t->left), heightOrNeg1(t->right))+1;
     
 }
 
@@ -57,13 +60,16 @@ void AVLTree<K, V>::rotateRight(Node * & t)
 {
 	*_out << __func__ << endl; // Outputs the rotation name (don't remove this)
     // your code here
+     if(t == NULL)
+    	return;
     
     Node * y = t->left;
     t->left = y -> right;
     y -> right = t;
-    t->height = heightOrNeg1(t);
     t = y;
-	t->height = heightOrNeg1(t);
+    t->left->height = max(heightOrNeg1(t->left->left), heightOrNeg1(t->left->right))+1;
+	t->right->height = max(heightOrNeg1(t->right->left), heightOrNeg1(t->right->right))+1;	
+	t->height = max(heightOrNeg1(t->left), heightOrNeg1(t->right))+1;
 
 }
 
@@ -90,27 +96,30 @@ void AVLTree<K, V>::insert(Node* & subtree, const K & key, const V & value)
     
     if(subtree == NULL)
 		subtree = new Node(key, value);
-	else if(subtree->right == NULL && subtree->left == NULL){
-		if(key < subtree->key)
-			subtree->left = new Node(key, value);
-		else
-			subtree->right = new Node(key, value);
-		subtree->height++;
 		
-	}else{
+	else if(key < subtree->key){
 		
-		if(subtree->key < key){
-			insert(subtree->right, key, value);	
-			if(subtree->right != NULL)
-				subtree->height++;
+		insert(subtree->left, key, value);
+		if( heightOrNeg1(subtree->right) - heightOrNeg1(subtree->left) == -2){
+			if( heightOrNeg1(subtree->left->right) - heightOrNeg1(subtree->left->left) == -1)
+				rotateRight(subtree);
+			else
+				rotateLeftRight(subtree);			
 		}
-		if(key < subtree->key){
-			insert(subtree->left, key, value);
-			if(subtree->left != NULL)
-				subtree->height++;
+	}
+	else if(key > subtree->key){
+		
+		insert(subtree->right, key, value);
+		if( heightOrNeg1(subtree->right) - heightOrNeg1(subtree->left) == 2){
+			if( heightOrNeg1(subtree->right->right) - heightOrNeg1(subtree->right->left) == 1)
+				rotateLeft(subtree);
+			else
+				rotateRightLeft(subtree);			
 		}
-
 		
 	}
-    
+	subtree->height = max(heightOrNeg1(subtree->left),heightOrNeg1(subtree->right))+1;	
+
 }
+	
+
