@@ -42,7 +42,7 @@ void AVLTree<K, V>::rotateLeft(Node * & t)
 	
 	t = y;
 	
-	t->right->height = max(heightOrNeg1(t->right->left), heightOrNeg1(t->right->right))+1;
+	t->left->height = max(heightOrNeg1(t->left->left), heightOrNeg1(t->left->right))+1;
 	
     
 }
