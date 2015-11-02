@@ -39,10 +39,11 @@ void AVLTree<K, V>::rotateLeft(Node * & t)
     Node * y = t->right;
 	t->right = y->left;
 	y ->left = t;
+	
 	t = y;
-	t->left->height = max(heightOrNeg1(t->left->left), heightOrNeg1(t->left->right))+1;
+	
 	t->right->height = max(heightOrNeg1(t->right->left), heightOrNeg1(t->right->right))+1;
-	t->height = max(heightOrNeg1(t->left), heightOrNeg1(t->right))+1;
+	
     
 }
 
@@ -67,9 +68,7 @@ void AVLTree<K, V>::rotateRight(Node * & t)
     t->left = y -> right;
     y -> right = t;
     t = y;
-    t->left->height = max(heightOrNeg1(t->left->left), heightOrNeg1(t->left->right))+1;
-	t->right->height = max(heightOrNeg1(t->right->left), heightOrNeg1(t->right->right))+1;	
-	t->height = max(heightOrNeg1(t->left), heightOrNeg1(t->right))+1;
+    t->right->height = max(heightOrNeg1(t->right->left), heightOrNeg1(t->right->right))+1;
 
 }
 
