@@ -467,7 +467,7 @@ string getcwdstr()
 	{
 		len *= 2;
 
-		delete buffer;
+		delete[] buffer;
 		buffer = new char[len];
 
 		ret = getcwd(&buffer[0], len - 1);
@@ -476,7 +476,7 @@ string getcwdstr()
 	EXIT_IF_ERROR(ret == NULL);
 
 	string cwdstr(buffer);
-	delete buffer;
+	delete[] buffer;
 
 	return cwdstr + "/";
 }
