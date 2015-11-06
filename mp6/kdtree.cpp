@@ -9,7 +9,11 @@ bool KDTree<Dim>::smallerDimVal(const Point<Dim> & first, const Point<Dim> & sec
     /**
      * @todo Implement this function!
      */
-    return false;
+       
+    if(second[curDim] < first[curDim])
+    	return false;
+    else
+    	return true;
 }
 
 
@@ -19,7 +23,29 @@ bool KDTree<Dim>::shouldReplace(const Point<Dim> & target, const Point<Dim> & cu
     /**
      * @todo Implement this function!
      */
-    return false;
+     double current = 0;
+    
+    for(int i = 0; i < Dim; i++){
+    
+    	current = current + ((target[i] - currentBest[i])*(target[i] - currentBest[i]));
+    
+    }
+    
+    
+    
+    double potentialdis = 0;
+     
+    for(int j = 0; j < Dim; j++){
+    
+    	potentialdis = potentialdis + ((target[j] - potential[j])*(target[j] - potential[j]));
+    
+    }
+    
+     
+    if(potentialdis < current)
+    	return true;
+    else 
+    	return false;
 }
 
 template<int Dim>
@@ -28,6 +54,7 @@ KDTree<Dim>::KDTree(const vector< Point<Dim> > & newPoints)
     /**
      * @todo Implement this function!
      */
+     
 }
 
 template<int Dim>
