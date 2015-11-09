@@ -365,13 +365,13 @@ size_t insertion_idx(const std::vector< T >& elements, const C& val)
 
 	while (left <= right) {
 		mid = (int) ((left + right) / 2);
-	if (val == elements[mid]) {
-			return (size_t)mid;
-		}
-	else if (val > elements[mid])
-		left = mid + 1;
-	else
-		right = mid - 1;
+		if (val == elements[mid]) {
+				return (size_t)mid;
+			}
+		else if (val > elements[mid])
+			left = mid + 1;
+		else
+			right = mid - 1;
 	}
 	
 	return elements.size();
