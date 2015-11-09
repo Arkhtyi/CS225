@@ -374,7 +374,7 @@ size_t insertion_idx(const std::vector< T >& elements, const C& val)
 			right = mid - 1;
 	}
 	
-	return elements.size();
+	return left;
 }
 #include "btree_given.cpp"
 #include "btree.cpp"
