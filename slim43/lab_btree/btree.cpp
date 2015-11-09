@@ -197,9 +197,9 @@ void BTree<K, V>::insert(BTreeNode* subroot, const DataPair& pair)
     		subroot->elements.push_back(pair);
     	}
     }else{
-    	BTreeNode * son = subroot->children[fli];
-    	insert(son,pair);
-    	if(subroot->elements.size() == order){
+    	
+    	insert(subroot->children[fli],pair);
+    	if(subroot->children[fli]->elements.size() == order){
     		split_child(subroot, fli);
     	}
     }
