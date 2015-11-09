@@ -1,4 +1,4 @@
-Exam report for slim43  
+Exam report for slim43
 CS 225, Fall 2015, Midterm 1, Exam number 211, version 1
 
  Num   Problem Name   Stu/Sol   Max   Score 
