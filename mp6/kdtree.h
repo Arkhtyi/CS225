@@ -240,6 +240,8 @@ class KDTree
         /**
          * @todo Add your helper functions here.
          */
+        int partition(vector < Point<Dim> > & newPoints, int start, int end, int pivotIndex, int dem);
+        void quickselect( vector < Point<Dim> > & newPoints, int start, int end, int pivotIndex, int dim);
 };
 
 #include "kdtree.cpp"
