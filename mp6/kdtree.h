@@ -243,6 +243,8 @@ class KDTree
         void buildtree(vector < Point<Dim> > & newPoints, int start, int end, int pivotIndex, int dim);
         int partition(vector < Point<Dim> > & newPoints, int start, int end, int pivotIndex, int dem);
         int quickselect( vector < Point<Dim> > & newPoints, int start, int end, int pivotIndex, int dim);
+        //Point<Dim> FNNHelper(const Point<Dim> & query, int pivpoint, int start, int end, int dim) const;
+        
 };
 
 #include "kdtree.cpp"
