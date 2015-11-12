@@ -71,8 +71,8 @@ void KDTree<Dim>::buildtree(vector < Point<Dim> > & newPoints, int start, int en
 	
 	int pivot = quickselect(newPoints,start, end, pivotIndex, dim);
 	
-	buildtree(newPoints, start, pivot-1, (start+pivot-1)/2, dim%Dim);
-	buildtree(newPoints, pivot+1, end, (pivot+1+end)/2, dim%Dim);
+	buildtree(newPoints, start, pivot-1, (start+pivot-1)/2, (dim+1)%Dim);
+	buildtree(newPoints, pivot+1, end, (pivot+1+end)/2, (dim+1)%Dim);
 	
 	
 
@@ -113,12 +113,32 @@ int KDTree<Dim>::quickselect( vector < Point<Dim> > & newPoints, int start, int 
 		return pivot;
 
 }
-
+ 
 template<int Dim>
 Point<Dim> KDTree<Dim>::findNearestNeighbor(const Point<Dim> & query) const
 {
-    /**
-     * @todo Implement this function!
-     */
+     
+   
+   int pivot = (points.size()/2);
+ //  Point<Dim> thePoint = FNNHelper(query, pivot, 0, points.size()-1, 0);
+   
+   
+   
    return Point<Dim>();
 }
+/*
+template<int Dim>
+Point<Dim> KDTree<Dim>::FNNHelper(const Point<Dim> & query, int pivpoint, int start, int end, int dim) const{
+
+	if(start == end)
+		return points[pivpoint];
+	
+	if(smallerDimVal(query,points[pivpoint],dim))
+		return FNNHelper(query, (start + pivpoint-1)/2 , 0, pivpoint-1, (dim+1)%Dim);
+	else
+		return FNNHelper(query, (pivpoint +1 +end)/2, pivpoint+1, end, (dim+1)%Dim);
+	
+
+
+}
+*/
