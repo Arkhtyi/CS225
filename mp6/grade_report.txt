@@ -1,8 +1,8 @@
-Grading revision r41447 by slim43, dated 2015-11-11 16:49:31.000435898 -0600 CST
+Grading revision r41747 by slim43, dated 2015-11-12 18:56:28.000106591 -0600 CST
 Monad Autograder
-Testing mp6 at 2015-11-12 00:39:56
+Testing mp6 at 2015-11-13 00:41:59
 
-"If you don't hand in the next homework, you might miss some points." ~ Prof. Jiawei Han
+"Let me tell you the secret that has led me to my goal. My strength lies solely in my tenacity." ~ Louis Pasteur
 
 Setting up test environment...
 Compiling...
@@ -16,23 +16,23 @@ testShouldReplace . . . . . [3 pts]  - passed
 testLinearCtor_1_10 . . . . [4 pts]  - passed
 testLinearCtor_3_31 . . . . [4 pts]  - passed
 testLinearCtor_2_14 . . . . [4 pts]  - passed
-testLinearNNS_1_10  . . . . [4 pts]  - FAILED
-testLinearNNS_3_31  . . . . [4 pts]  - FAILED
+testLinearNNS_1_10  . . . . [4 pts]  - passed
+testLinearNNS_3_31  . . . . [4 pts]  - passed
 testLinearNNS_2_14  . . . . [4 pts]  - FAILED
 testDeceptiveNNOneLevelCtor [4 pts]  - FAILED
-testDeceptiveNNOneLevelNNS  [3 pts]  - FAILED
+testDeceptiveNNOneLevelNNS  [3 pts]  - passed
 testMinesCtor . . . . . . . [3 pts]  - FAILED
-testMinesNNS  . . . . . . . [4 pts]  - FAILED
+testMinesNNS  . . . . . . . [4 pts]  - passed
 testDeceptiveMinesCtor  . . [3 pts]  - FAILED
 testDeceptiveMinesNNS . . . [5 pts]  - FAILED
-testTieBreakingCtor . . . . [3 pts]  - FAILED
+testTieBreakingCtor . . . . [3 pts]  - passed
 testTieBreakingNNS  . . . . [3 pts]  - FAILED
 testLeftRecurseCtor . . . . [3 pts]  - FAILED
 testLeftRecurseNNS  . . . . [3 pts]  - FAILED
 testRandom1Ctor . . . . . . [3 pts]  - FAILED
 testRandom1NNS  . . . . . . [3 pts]  - FAILED
-testRandom2Ctor . . . . . . [3 pts]  - FAILED
-testRandom2NNS  . . . . . . [3 pts]  - FAILED
+testRandom2Ctor . . . . . . [3 pts]  - passed
+testRandom2NNS  . . . . . . [3 pts]  - passed
 testCheckeredMosaic . . . . [12 pts] - FAILED
 testPrimaryColorMosaic  . . [6 pts]  - FAILED
 testRandomMosaic  . . . . . [6 pts]  - FAILED
@@ -40,5 +40,5 @@ testRandomMosaic  . . . . . [6 pts]  - FAILED
 
 Total score...
 ================================================================
-TOTAL SCORE: 18
+TOTAL SCORE: 42
 
