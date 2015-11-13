@@ -136,9 +136,7 @@ Point<Dim> KDTree<Dim>::FNNHelper(const Point<Dim> & query, int pivpoint, int st
 
 	if(smallerDimVal(query, points[pivpoint],dim)){
 		Point<Dim> leftside = FNNHelper(query, (start + pivpoint-1)/2 , start, pivpoint-1, (dim+1)%Dim);
-		//cout << "pivpoint is:" << pivpoint << endl;
 		if(shouldReplace(query, leftside, points[pivpoint])){
-			cout << "working" << endl;
 			Point<Dim> rightside = FNNHelper(query, (end + pivpoint+1)/2 , pivpoint+1, end, (dim+1)%Dim);
 			if(shouldReplace(query, points[pivpoint] , rightside))
 				return rightside;
