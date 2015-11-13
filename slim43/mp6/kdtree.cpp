@@ -46,7 +46,9 @@ bool KDTree<Dim>::shouldReplace(const Point<Dim> & target, const Point<Dim> & cu
      
     if(potentialdis < current)	
     	return true;
-    else 
+    else if (potentialdis == current)
+    		return potential < currentBest;
+    else
     	return false;
 }
 
@@ -119,26 +121,84 @@ Point<Dim> KDTree<Dim>::findNearestNeighbor(const Point<Dim> & query) const
 {
      
    
-   int pivot = (points.size()/2);
- //  Point<Dim> thePoint = FNNHelper(query, pivot, 0, points.size()-1, 0);
+  	int pivot = ((points.size()-1)/2);
+	return FNNHelper(query, pivot, 0, points.size()-1, 0);
    
    
    
-   return Point<Dim>();
 }
-/*
 template<int Dim>
 Point<Dim> KDTree<Dim>::FNNHelper(const Point<Dim> & query, int pivpoint, int start, int end, int dim) const{
-
-	if(start == end)
+	if(pivpoint <= 0 || start >= end || start < 0 || end < 0)
 		return points[pivpoint];
-	
-	if(smallerDimVal(query,points[pivpoint],dim))
-		return FNNHelper(query, (start + pivpoint-1)/2 , 0, pivpoint-1, (dim+1)%Dim);
-	else
-		return FNNHelper(query, (pivpoint +1 +end)/2, pivpoint+1, end, (dim+1)%Dim);
+
 	
 
+	if(smallerDimVal(query, points[pivpoint],dim)){
+		Point<Dim> leftside = FNNHelper(query, (start + pivpoint-1)/2 , start, pivpoint-1, (dim+1)%Dim);
+		//cout << "pivpoint is:" << pivpoint << endl;
+		if(shouldReplace(query, leftside, points[pivpoint])){
+			cout << "working" << endl;
+			Point<Dim> rightside = FNNHelper(query, (end + pivpoint+1)/2 , pivpoint+1, end, (dim+1)%Dim);
+			if(shouldReplace(query, points[pivpoint] , rightside))
+				return rightside;
+			else
+				return points[pivpoint];
+		}else
+			return leftside;
+	}else{
+	
+		Point<Dim> rightside = FNNHelper(query, (end + pivpoint+1)/2 , pivpoint+1, end, (dim+1)%Dim);
+		
+		if(shouldReplace(query, rightside, points[pivpoint])){
+			Point<Dim> leftside = FNNHelper(query, (start + pivpoint-1)/2 , start, pivpoint-1, (dim+1)%Dim);
+			if(shouldReplace(query,   points[pivpoint], leftside))
+				return leftside;
+			else
+				return points[pivpoint];
+		}
+		else
+			return rightside;
+			}
+	
+	/*
+	
+	
+	if(smallerDimVal(query, points[pivpoint],dim)){
+		if(shouldReplace(query, FNNHelper(query, (start + pivpoint-1)/2 , 0, pivpoint-1, (dim+1)%Dim), points[pivpoint])){
+			return points[pivpoint];
+			
+		}else
+			return FNNHelper(query, (start + pivpoint-1)/2 , 0, pivpoint-1, (dim+1)%Dim);
+	}else{
+		if(shouldReplace(query, FNNHelper(query,(pivpoint+1+end)/2, pivpoint+1,end, (dim+1)%Dim), points[pivpoint])){
+			
+				return points[pivpoint];
+		}
+		else
+			return FNNHelper(query,(pivpoint+1+end)/2, pivpoint+1,end, (dim+1)%Dim);
+	}
+	*/
+	/*	
+
+	if(smallerDimVal(query, points[pivpoint],dim)){  
+	
+		Point<Dim> temp = FNNHelper(query, (start + pivpoint-1)/2 , 0, pivpoint-1, (dim+1)%Dim);
+		if(shouldReplace(query, FNNHelper(query, (start + pivpoint-1)/2 , 0, pivpoint-1, (dim+1)%Dim), points[pivpoint]))
+				
+			return FNNHelper(query,(pivpoint+1+end)/2, pivpoint+1,end, (dim+1)%Dim);
+		else
+			return temp;
+	}else{
+		
+		Point<Dim> temp = FNNHelper(query,(pivpoint+1+end)/2, pivpoint+1,end, (dim+1)%Dim);
+		if(shouldReplace(query, FNNHelper(query,(pivpoint+1+end)/2, pivpoint+1,end, (dim+1)%Dim), points[pivpoint]))
+				
+			return FNNHelper(query, (start + pivpoint-1)/2 , 0, pivpoint-1, (dim+1)%Dim);
+		else
+			return temp;
+			
+	}			
+	*/
 
 }
-*/
