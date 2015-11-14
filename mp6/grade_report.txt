@@ -1,8 +1,8 @@
-Grading revision r41747 by slim43, dated 2015-11-12 18:56:28.000106591 -0600 CST
+Grading revision r41936 by tolar2, dated 2015-11-13 00:58:55.00073863 -0600 CST
 Monad Autograder
-Testing mp6 at 2015-11-13 00:41:59
+Testing mp6 at 2015-11-14 00:43:57
 
-"Let me tell you the secret that has led me to my goal. My strength lies solely in my tenacity." ~ Louis Pasteur
+"That's legit as shit." ~ Rick Barber
 
 Setting up test environment...
 Compiling...
