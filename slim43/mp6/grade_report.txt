@@ -1,8 +1,8 @@
-Grading revision r41936 by tolar2, dated 2015-11-13 00:58:55.00073863 -0600 CST
+Grading revision r42295 by tolar2, dated 2015-11-14 01:00:46.000541229 -0600 CST
 Monad Autograder
-Testing mp6 at 2015-11-14 00:43:57
+Testing mp6 at 2015-11-15 00:40:48
 
-"That's legit as shit." ~ Rick Barber
+"Now that's just math for math's sake." ~ Prof. Julia Hockenmaier
 
 Setting up test environment...
 Compiling...
