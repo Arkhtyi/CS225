@@ -1,8 +1,8 @@
-Grading revision r42295 by tolar2, dated 2015-11-14 01:00:46.000541229 -0600 CST
+Grading revision r42516 by tolar2, dated 2015-11-15 00:57:25.000331713 -0600 CST
 Monad Autograder
-Testing mp6 at 2015-11-15 00:40:48
+Testing mp6 at 2015-11-16 02:01:33
 
-"Now that's just math for math's sake." ~ Prof. Julia Hockenmaier
+"First, solve the problem. Then, write the code." ~ John Johnson
 
 Setting up test environment...
 Compiling...
