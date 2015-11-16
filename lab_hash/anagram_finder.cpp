@@ -52,26 +52,25 @@ bool AnagramFinder<Dict>::checkWord( const string & word, const string & test ) 
      * templated hashtable class Dict.
      */
 
-	Dict<char, int> table1(256);
-	Dict<char, int> table2(256);
-
-	for(size_t i = 0; i < word.length(); i++)
-		table1[word[i]]++;
-	for(size_t i = 0; i < test.length(); i++)
-		table2[word[i]]++;
+	Dict<char, int> hash1(256);
+	Dict<char, int> hash2(256);
 	
+	for(size_t i=0; i < word.length(); i++)
+		hash1[word[i]]++;
+	for(size_t i=0; i < test.length(); i++)
+		hash2[word[i]]++;
 	
-	for (auto & value : table1){
-		if(value.second != table2[value.first])
-			return false;
-	
-	}
-	for (auto & value: table2){
-		if(value.second != table1[value.first])
+	for(auto & value: hash1){
+		if(value.second != hash2[value.first])
 			return false;
 	}
-
-    return true;
+	for(auto & value: hash2){
+		if(value.second != hash1[value.first])
+			return false;
+	}
+		
+	return true;
+	
 }
 
 /**
