@@ -47,6 +47,8 @@ LogfileParser::LogLine::LogLine( const string & line ) {
  * @param fname The name of the log file to open.
  */
 LogfileParser::LogfileParser( const string & fname ) : whenVisitedTable( 256 ) {
+
+
     SCHashTable< string, bool > pageVisitedTable( 256 );
     ifstream infile( fname.c_str() );
     string line;
@@ -67,9 +69,25 @@ LogfileParser::LogfileParser( const string & fname ) : whenVisitedTable( 256 ) {
          * this problem. This should also build the uniqueURLs member
          * vector as well.
          */
+         
+         
+         string newkey = ll.customer+ll.url;
+         
+         if(whenVisitedTable.keyExists(newkey)){
+  			if(ll.date >  whenVisitedTable[newkey])
+  				whenVisitedTable[newkey] = ll.date;      
+         }
+         else{
+         	whenVisitedTable.insert(newkey, ll.date);
+         }
+         if(!pageVisitedTable.keyExists(ll.url))
+         	uniqueURLs.push_back(ll.url);
+         pageVisitedTable.insert(ll.url,true);
+         
     }
     infile.close();
 }
+
 
 /**
  * Determines if a given customer has ever visited the given url.
@@ -83,10 +101,17 @@ bool LogfileParser::hasVisited( const string & customer, const string & url ) co
      * @todo Implement this function.
      */
 
-    (void) customer; // prevent warnings... When you implement this function, remove this line.
-    (void) url;      // prevent warnings... When you implement this function, remove this line.
+	
 
-    return true; // replaceme
+	if(whenVisitedTable.keyExists(customer+url)){
+		return true;
+	
+	}
+
+    //(void) customer; // prevent warnings... When you implement this function, remove this line.
+    //(void) url;      // prevent warnings... When you implement this function, remove this line.
+
+    return false; // replaceme
 }
 
 /**
@@ -104,10 +129,13 @@ time_t LogfileParser::dateVisited( const string & customer, const string & url )
      * @todo Implement this function.
      */
 
-    (void) customer; // prevent warnings... When you implement this function, remove this line.
-    (void) url;      // prevent warnings... When you implement this function, remove this line.
 
-    return time_t(); // replaceme
+	return whenVisitedTable.find(customer+url);
+
+    //(void) customer; // prevent warnings... When you implement this function, remove this line.
+   // (void) url;      // prevent warnings... When you implement this function, remove this line.
+
+    //return time_t(); // replaceme
 }
 
 /**
