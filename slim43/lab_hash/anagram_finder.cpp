@@ -52,6 +52,10 @@ bool AnagramFinder<Dict>::checkWord( const string & word, const string & test ) 
      * templated hashtable class Dict.
      */
 
+
+
+
+
 	Dict<char, int> hash1(256);
 	Dict<char, int> hash2(256);
 	

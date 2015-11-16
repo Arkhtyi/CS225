@@ -84,18 +84,18 @@ void LPHashTable<K,V>::insert( K const & key, V const & value ) {
 	if(shouldResize())
 		resizeTable();
         
-    	if(findIndex(key) == -1){
+    if(findIndex(key) == -1){
     		int temp = hash(key,size);
     		if(table[temp] == NULL){
     			table[temp] = new std::pair<K,V>(key,value);
     			should_probe[temp] = true;
     		
-    		}
+    		}else{
     		int i = temp + 1;
     		for( ; table[i%size] != table[temp]; i++){
     			if(table[i%size] == NULL){
-    				table[i] = new std::pair<K,V>(key,value);
-    				should_probe[i] = true;
+    				table[i%size] = new std::pair<K,V>(key,value);
+    				should_probe[i%size] = true;
     				return;
     			
     			}
@@ -104,7 +104,7 @@ void LPHashTable<K,V>::insert( K const & key, V const & value ) {
     		}
     	
     	
-    	
+ 		  }   	
     	}
 }
 
