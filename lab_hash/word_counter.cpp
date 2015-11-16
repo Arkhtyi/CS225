@@ -29,6 +29,19 @@ vector< pair<string, int> > WordFreq<Dict>::getWords( int threshold ) const {
      * @see char_counter.cpp if you're having trouble.
      */
 
+	Dict<string, int> table(256);
+	while(infile.good()){
+		string inf = infile.getNextWord();
+		if(inf.length()>0)
+			table[inf]++;
+		
+	}
+	typename Dict<string, int>::iterator iter;
+	for(iter = table.begin(); iter != table.end(); iter++){
+		if(iter->second >= threshold)
+			ret.push_back(*iter);
+	}
+
     (void) threshold; // prevent warnings... When you implement this function, remove this line.
 
     return ret;

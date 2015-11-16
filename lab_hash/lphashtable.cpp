@@ -80,25 +80,32 @@ void LPHashTable<K,V>::insert( K const & key, V const & value ) {
      *  0.7). **Do this check *after* increasing elems!!** Also, don't
      *  forget to mark the cell for probing with should_probe!
      */
-
+	++elems;
+	if(shouldResize())
+		resizeTable();
         
-     ++elems;
-     if( shouldResize() )
-        resizeTable();
-    pair<K,V> p( key, value );
-    size_t idx = hash( key, size );
-    if((int)idx != -1){
-		for(size_t i = 0; i < size; i++){
-			if(idx + i >= size)
-				idx = idx - size;
-			
-			if(should_probe[idx+i] == false){
-				table[idx] = &p;
-				should_probe[idx+i] = true;
-				return;
-			}
-		}
-	}
+    	if(findIndex(key) == -1){
+    		int temp = hash(key,size);
+    		if(table[temp] == NULL){
+    			table[temp] = new std::pair<K,V>(key,value);
+    			should_probe[temp] = true;
+    		
+    		}
+    		int i = temp + 1;
+    		for( ; table[i%size] != table[temp]; i++){
+    			if(table[i%size] == NULL){
+    				table[i] = new std::pair<K,V>(key,value);
+    				should_probe[i] = true;
+    				return;
+    			
+    			}
+    		
+    		
+    		}
+    	
+    	
+    	
+    	}
 }
 
 template <class K, class V>
