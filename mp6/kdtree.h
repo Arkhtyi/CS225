@@ -244,7 +244,7 @@ class KDTree
         int partition(vector < Point<Dim> > & newPoints, int start, int end, int pivotIndex, int dem);
         int quickselect( vector < Point<Dim> > & newPoints, int start, int end, int pivotIndex, int dim);
         Point<Dim> FNNHelper(const Point<Dim> & query, int pivpoint, int start, int end, int dim) const;
-        bool compareDistance(const Point<Dim> & query, Point<Dim> point1, Point<Dim> point2) const;
+        bool compareDimDist(const Point<Dim> & query, Point<Dim> point1, Point<Dim> point2, int dim) const;
 };
 
 #include "kdtree.cpp"

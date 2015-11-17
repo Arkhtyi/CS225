@@ -155,23 +155,18 @@ int KDTree<Dim>::quickselect( vector < Point<Dim> > & newPoints, int start, int 
 }
  
 template<int Dim>
-bool KDTree<Dim>::compareDistance(const Point<Dim> & query, Point<Dim> point1, Point<Dim> point2) const{
+bool KDTree<Dim>::compareDimDist(const Point<Dim> & query, Point<Dim> point1, Point<Dim> point2, int dim) const{
 
 	int distance1 = 0;
 	int distance2 = 0;
 	
 	for(int i = 0; i < Dim; i++){
-		distance1 = distance1 + point1[i];
+		distance1 = distance1 + ((query[i] - point1[i]) * (query[i] - point1[i]));
 	}
+	
+	distance2 = (query[dim] - point2[dim]) * (query[dim] - point2[dim]);
 
-	for(int i = 0; i < Dim; i++){
-		distance2 = distance2 + point2[i];
-	}
-
-	if(distance2 > distance1)
-		return true;
-	else
-		return false;
+	return distance1 > distance2;
 
 }
  
@@ -196,28 +191,59 @@ Point<Dim> KDTree<Dim>::FNNHelper(const Point<Dim> & query, int pivpoint, int st
 
 	if(smallerDimVal(query, points[pivpoint],dim)){
 		Point<Dim> leftside = FNNHelper(query, (start + pivpoint-1)/2 , start, pivpoint-1, (dim+1)%Dim);
+		
 		if(shouldReplace(query, leftside, points[pivpoint])){
-			Point<Dim> rightside = FNNHelper(query, (end + pivpoint+1)/2 , pivpoint+1, end, (dim+1)%Dim);
-			if(compareDistance(query, points[pivpoint] , rightside))
-				return rightside;
-			else
+			if(compareDimDist(query, points[pivpoint], points[pivpoint], dim)){
+				Point<Dim> rightside = FNNHelper(query, (end + pivpoint+1)/2 , pivpoint+1, end, (dim+1)%Dim);
+		
+					if(shouldReplace(query, points[pivpoint] , rightside))
+						return rightside;
+					else
+						return points[pivpoint];
+			}else
 				return points[pivpoint];
-		}else
-			return leftside;
+			
+		}else{
+			if(compareDimDist(query, leftside, points[pivpoint], dim)){
+				Point<Dim> rightside = FNNHelper(query, (end + pivpoint+1)/2 , pivpoint+1, end, (dim+1)%Dim);
+		
+					if(shouldReplace(query, points[pivpoint] , rightside))
+						return rightside;
+					else
+						return leftside;
+			}
+			else
+				return leftside;
+		}
 	}else{
 	
 		Point<Dim> rightside = FNNHelper(query, (end + pivpoint+1)/2 , pivpoint+1, end, (dim+1)%Dim);
 		
 		if(shouldReplace(query, rightside, points[pivpoint])){
-			Point<Dim> leftside = FNNHelper(query, (start + pivpoint-1)/2 , start, pivpoint-1, (dim+1)%Dim);
-			if(compareDistance(query,   points[pivpoint], leftside))
-				return leftside;
-			else
-				return points[pivpoint];
-		}
-		else
-			return rightside;
+			if(compareDimDist(query, points[pivpoint], points[pivpoint], dim)){
+				Point<Dim> leftside = FNNHelper(query, (start + pivpoint-1)/2 , start, pivpoint-1, (dim+1)%Dim);
+				if(shouldReplace(query,points[pivpoint], leftside))
+					return leftside;
+				else
+					return points[pivpoint];
 			}
+			else
+				return points[pivpoint];	
+		}
+		else{
+			if(compareDimDist(query, rightside, points[pivpoint], dim)){
+				Point<Dim> leftside = FNNHelper(query, (start + pivpoint-1)/2 , start, pivpoint-1, (dim+1)%Dim);
+		
+					if(shouldReplace(query, points[pivpoint] , leftside))
+						return leftside;
+					else
+						return rightside;
+			}
+			else
+				return rightside;
+		}
+				
+	}
 	
 	/*
 	
