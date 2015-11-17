@@ -166,7 +166,7 @@ bool KDTree<Dim>::compareDimDist(const Point<Dim> & query, Point<Dim> point1, Po
 	
 	distance2 = (query[dim] - point2[dim]) * (query[dim] - point2[dim]);
 
-	return distance1 > distance2;
+	return distance1 >= distance2;
 
 }
  
