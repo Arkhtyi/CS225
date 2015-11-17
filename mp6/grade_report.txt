@@ -1,8 +1,8 @@
-Grading revision r42516 by tolar2, dated 2015-11-15 00:57:25.000331713 -0600 CST
+Grading revision r43784 by slim43, dated 2015-11-16 21:31:57.000100352 -0600 CST
 Monad Autograder
-Testing mp6 at 2015-11-16 02:01:33
+Testing mp6 at 2015-11-17 00:43:11
 
-"First, solve the problem. Then, write the code." ~ John Johnson
+"Simplicity is the ultimate sophistication." ~ Leonardo da Vinci
 
 Setting up test environment...
 Compiling...
@@ -18,21 +18,21 @@ testLinearCtor_3_31 . . . . [4 pts]  - passed
 testLinearCtor_2_14 . . . . [4 pts]  - passed
 testLinearNNS_1_10  . . . . [4 pts]  - passed
 testLinearNNS_3_31  . . . . [4 pts]  - passed
-testLinearNNS_2_14  . . . . [4 pts]  - FAILED
-testDeceptiveNNOneLevelCtor [4 pts]  - FAILED
+testLinearNNS_2_14  . . . . [4 pts]  - passed
+testDeceptiveNNOneLevelCtor [4 pts]  - passed
 testDeceptiveNNOneLevelNNS  [3 pts]  - passed
-testMinesCtor . . . . . . . [3 pts]  - FAILED
-testMinesNNS  . . . . . . . [4 pts]  - passed
-testDeceptiveMinesCtor  . . [3 pts]  - FAILED
-testDeceptiveMinesNNS . . . [5 pts]  - FAILED
+testMinesCtor . . . . . . . [3 pts]  - passed
+testMinesNNS  . . . . . . . [4 pts]  - FAILED
+testDeceptiveMinesCtor  . . [3 pts]  - passed
+testDeceptiveMinesNNS . . . [5 pts]  - passed
 testTieBreakingCtor . . . . [3 pts]  - passed
-testTieBreakingNNS  . . . . [3 pts]  - FAILED
-testLeftRecurseCtor . . . . [3 pts]  - FAILED
-testLeftRecurseNNS  . . . . [3 pts]  - FAILED
-testRandom1Ctor . . . . . . [3 pts]  - FAILED
+testTieBreakingNNS  . . . . [3 pts]  - passed
+testLeftRecurseCtor . . . . [3 pts]  - passed
+testLeftRecurseNNS  . . . . [3 pts]  - passed
+testRandom1Ctor . . . . . . [3 pts]  - passed
 testRandom1NNS  . . . . . . [3 pts]  - FAILED
 testRandom2Ctor . . . . . . [3 pts]  - passed
-testRandom2NNS  . . . . . . [3 pts]  - passed
+testRandom2NNS  . . . . . . [3 pts]  - FAILED
 testCheckeredMosaic . . . . [12 pts] - FAILED
 testPrimaryColorMosaic  . . [6 pts]  - FAILED
 testRandomMosaic  . . . . . [6 pts]  - FAILED
@@ -40,5 +40,5 @@ testRandomMosaic  . . . . . [6 pts]  - FAILED
 
 Total score...
 ================================================================
-TOTAL SCORE: 42
+TOTAL SCORE: 66
 
