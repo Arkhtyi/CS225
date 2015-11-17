@@ -61,20 +61,23 @@ KDTree<Dim>::KDTree(const vector< Point<Dim> > & newPoints)
     points = newPoints;
     int pivot = (0+newPoints.size())/2;
      
-    buildtree(points, 0, points.size()-1, pivot, 0);
+    buildtree(points, 0, points.size()-1, 0);
      
 }
 
 template<int Dim>
-void KDTree<Dim>::buildtree(vector < Point<Dim> > & newPoints, int start, int end, int pivotIndex, int dim){
+void KDTree<Dim>::buildtree(vector < Point<Dim> > & newPoints, int start, int end, int dim){
 	
 	if(start >= end)
 		return;
+	int pivotIndex = (start + end)/2;
 	
 	int pivot = quickselect(newPoints,start, end, pivotIndex, dim);
 	
-	buildtree(newPoints, start, pivot-1, (start+pivot-1)/2, (dim+1)%Dim);
-	buildtree(newPoints, pivot+1, end, (pivot+1+end)/2, (dim+1)%Dim);
+	points[pivotIndex] = newPoints[pivot];
+	
+	buildtree(newPoints, start, pivot-1,  (dim+1)%Dim);
+	buildtree(newPoints, pivot+1, end,  (dim+1)%Dim);
 	
 	
 
@@ -84,6 +87,7 @@ void KDTree<Dim>::buildtree(vector < Point<Dim> > & newPoints, int start, int en
 template<int Dim>
 int KDTree<Dim>::partition(vector < Point<Dim> > & newPoints, int start, int end, int pivotIndex, int dim){
 	
+/*
 	std::swap(newPoints[pivotIndex], newPoints[end]);
 	int storeIndex = end - 1;
 	for(; start != storeIndex; ){
@@ -101,19 +105,53 @@ int KDTree<Dim>::partition(vector < Point<Dim> > & newPoints, int start, int end
 		std::swap(newPoints[end], newPoints[storeIndex]);
 		return storeIndex;
 	}
+	
+		*/
+		
+		
+		
+		
+	
+	Point<Dim> pivotValue = newPoints[pivotIndex];
+	std::swap(newPoints[pivotIndex], newPoints[end]);
+	int storeIndex = start;
+	for(int i = start; i <= end; i++){
+		if(smallerDimVal(newPoints[i],pivotValue,dim)){
+			std::swap(newPoints[storeIndex], newPoints[i]);
+			storeIndex++;	
+		}
+	}
+	std::swap(newPoints[end], newPoints[storeIndex]);
+	return storeIndex;
+	
+	
 }
 template<int Dim>
 int KDTree<Dim>::quickselect( vector < Point<Dim> > & newPoints, int start, int end, int pivotIndex, int dim){
+	
+	/*
 	if(start >= end)
 		return start;
-	int	pivot = partition(newPoints,start,end,start,dim);
+	
+	int pivot = (start + end) /2;
+	pivot = partition(newPoints, start, end, pivot, dim);
+	
+	if(pivot == pivotIndex)
+		return pivot;
+	else if( 
+	*/
+	
+	
+	if(start >= end)
+		return start;
+	int	pivot = partition(newPoints,start,end,(start+end)/2,dim);
 	if(pivot > pivotIndex)
 		return quickselect(newPoints, start, pivot-1, pivotIndex, dim);
 	else if(pivot < pivotIndex)
 		return quickselect(newPoints, pivot+1, end, pivotIndex, dim);
 	else
 		return pivot;
-
+	
 }
  
 template<int Dim>
@@ -129,7 +167,7 @@ Point<Dim> KDTree<Dim>::findNearestNeighbor(const Point<Dim> & query) const
 }
 template<int Dim>
 Point<Dim> KDTree<Dim>::FNNHelper(const Point<Dim> & query, int pivpoint, int start, int end, int dim) const{
-	if(pivpoint <= 0 || start >= end || start < 0 || end < 0)
+	if(start >= end )
 		return points[pivpoint];
 
 	
