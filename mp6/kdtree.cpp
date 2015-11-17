@@ -10,12 +10,12 @@ bool KDTree<Dim>::smallerDimVal(const Point<Dim> & first, const Point<Dim> & sec
      * @todo Implement this function!
      */
        
-    if(second[curDim] < first[curDim])
-    	return false;
+    if(second[curDim] > first[curDim])
+    	return true;
     else if(second[curDim] == first[curDim])
     	return first < second;
     else
-    	return true;
+    	return false;
 }
 
 
@@ -185,7 +185,7 @@ Point<Dim> KDTree<Dim>::findNearestNeighbor(const Point<Dim> & query) const
 template<int Dim>
 Point<Dim> KDTree<Dim>::FNNHelper(const Point<Dim> & query, int pivpoint, int start, int end, int dim) const{
 	if(start >= end )
-		return points[pivpoint];
+		return points[start];
 
 	
 
@@ -207,7 +207,7 @@ Point<Dim> KDTree<Dim>::FNNHelper(const Point<Dim> & query, int pivpoint, int st
 			if(compareDimDist(query, leftside, points[pivpoint], dim)){
 				Point<Dim> rightside = FNNHelper(query, (end + pivpoint+1)/2 , pivpoint+1, end, (dim+1)%Dim);
 		
-					if(shouldReplace(query, points[pivpoint] , rightside))
+					if(shouldReplace(query, leftside , rightside))
 						return rightside;
 					else
 						return leftside;
@@ -234,7 +234,7 @@ Point<Dim> KDTree<Dim>::FNNHelper(const Point<Dim> & query, int pivpoint, int st
 			if(compareDimDist(query, rightside, points[pivpoint], dim)){
 				Point<Dim> leftside = FNNHelper(query, (start + pivpoint-1)/2 , start, pivpoint-1, (dim+1)%Dim);
 		
-					if(shouldReplace(query, points[pivpoint] , leftside))
+					if(shouldReplace(query, rightside , leftside))
 						return leftside;
 					else
 						return rightside;
