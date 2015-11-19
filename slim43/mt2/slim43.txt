@@ -28,7 +28,7 @@ CS 225, Fall 2015, Midterm 2, Exam number 665, version 1
   23             3.0    2.0  Incorrect header
   24             5.0    5.0  
   25             4.0    4.0  
-  26             5.0    5.0  ,,,,,,,,,,,,,,,,,,,,,,
+  26             5.0    5.0  
   27             5.0    4.5  set elem of internal node
   28             5.0    3.0  bd1
   29             3.0    1.0  should have kept the 4^h
