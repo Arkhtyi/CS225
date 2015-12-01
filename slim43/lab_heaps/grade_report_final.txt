@@ -1,0 +1,145 @@
+Grading revision r44061 by ruan3, dated 2015-11-17 16:29:16.000696933 -0600 CST
+Monad Autograder
+Testing lab_heaps at 2015-12-01 00:36:48
+
+"Microsoft has a new version out, Windows XP, which according to everybody is the 'most reliable Windows ever.' To me, this is like saying that asparagus is 'the most articulate vegetable ever.'" ~ Dave Barry
+
+Setting up test environment...
+Compiling...
+================================================================
+
+
+Running tests...
+================================================================
+peek1  . . . [5 pts] - FAILED: unit_tests.cpp:43: Assertion (herp.peek() == 23) failed
+peek2  . . . [5 pts] - FAILED: unit_tests.cpp:59: Assertion (herp.peek() == 33) failed
+heapifyDown1 [9 pts] - FAILED: unit_tests.cpp:77: [herp.pop() => 0] != [sorted[i] => 1]
+heapifyDown2 [9 pts] - FAILED: unit_tests.cpp:77: [herp.pop() => 0] != [sorted[i] => 1]
+heapifyDown3 [9 pts] - FAILED: unit_tests.cpp:77: [herp.pop() => 0] != [sorted[i] => 1]
+heapifyDown4 [9 pts] - FAILED: unit_tests.cpp:77: [herp.pop() => 0] != [sorted[i] => 6]
+heapifyDown5 [9 pts] - FAILED: unit_tests.cpp:77: [herp.pop() => 0] != [sorted[i] => 4]
+buildHeap1 . [9 pts] - FAILED: unit_tests.cpp:126: Assertion (ss.str() == readFile(filename)) failed
+buildHeap2 . [9 pts] - FAILED: unit_tests.cpp:126: Assertion (ss.str() == readFile(filename)) failed
+buildHeap3 . [9 pts] - FAILED: unit_tests.cpp:126: Assertion (ss.str() == readFile(filename)) failed
+buildHeap4 . [9 pts] - FAILED: unit_tests.cpp:126: Assertion (ss.str() == readFile(filename)) failed
+buildHeap5 . [9 pts] - FAILED: unit_tests.cpp:126: Assertion (ss.str() == readFile(filename)) failed
+
+
+Total score...
+================================================================
+TOTAL SCORE: 0
+
+
+
+Detailed test output...
+================================================================
+----------------------------------------------------------------
+peek1 [5 points]
+Result: FAILED: unit_tests.cpp:43: Assertion (herp.peek() == 23) failed
+Took 0ms (1000ms timeout)
+Output:
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+peek2 [5 points]
+Result: FAILED: unit_tests.cpp:59: Assertion (herp.peek() == 33) failed
+Took 0ms (1000ms timeout)
+Output:
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+heapifyDown1 [9 points]
+Result: FAILED: unit_tests.cpp:77: [herp.pop() => 0] != [sorted[i] => 1]
+Took 0ms (5000ms timeout)
+Output:
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+heapifyDown2 [9 points]
+Result: FAILED: unit_tests.cpp:77: [herp.pop() => 0] != [sorted[i] => 1]
+Took 0ms (5000ms timeout)
+Output:
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+heapifyDown3 [9 points]
+Result: FAILED: unit_tests.cpp:77: [herp.pop() => 0] != [sorted[i] => 1]
+Took 0ms (5000ms timeout)
+Output:
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+heapifyDown4 [9 points]
+Result: FAILED: unit_tests.cpp:77: [herp.pop() => 0] != [sorted[i] => 6]
+Took 0ms (5000ms timeout)
+Output:
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+heapifyDown5 [9 points]
+Result: FAILED: unit_tests.cpp:77: [herp.pop() => 0] != [sorted[i] => 4]
+Took 0ms (5000ms timeout)
+Output:
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+buildHeap1 [9 points]
+Result: FAILED: unit_tests.cpp:126: Assertion (ss.str() == readFile(filename)) failed
+Took 0ms (5000ms timeout)
+Output:
+----------------------------------------------------------------
+(empty)
+
+[ ]
+
+
+----------------------------------------------------------------
+buildHeap2 [9 points]
+Result: FAILED: unit_tests.cpp:126: Assertion (ss.str() == readFile(filename)) failed
+Took 0ms (5000ms timeout)
+Output:
+----------------------------------------------------------------
+(empty)
+
+[ ]
+
+
+----------------------------------------------------------------
+buildHeap3 [9 points]
+Result: FAILED: unit_tests.cpp:126: Assertion (ss.str() == readFile(filename)) failed
+Took 0ms (5000ms timeout)
+Output:
+----------------------------------------------------------------
+(empty)
+
+[ ]
+
+
+----------------------------------------------------------------
+buildHeap4 [9 points]
+Result: FAILED: unit_tests.cpp:126: Assertion (ss.str() == readFile(filename)) failed
+Took 0ms (5000ms timeout)
+Output:
+----------------------------------------------------------------
+(empty)
+
+[ ]
+
+
+----------------------------------------------------------------
+buildHeap5 [9 points]
+Result: FAILED: unit_tests.cpp:126: Assertion (ss.str() == readFile(filename)) failed
+Took 0ms (5000ms timeout)
+Output:
+----------------------------------------------------------------
+(empty)
+
+[ ]
+
+
+
+----------------------------------------------------------------
+Total score...
+================================================================
+TOTAL SCORE: 0
+
