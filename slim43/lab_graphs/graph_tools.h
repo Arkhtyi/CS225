@@ -6,6 +6,7 @@
 #ifndef _GRAPH_TOOLS_
 #define _GRAPH_TOOLS_
 
+#include <iostream>
 #include <algorithm>
 #include <stack>
 #include <queue>

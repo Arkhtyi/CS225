@@ -29,8 +29,33 @@
  *  vertices, you'll have to remember each vertex's parent somehow.
  */
 int GraphTools::findShortestPath(Graph & graph, Vertex start, Vertex end)
-{
-    return -1;
+{ 
+	Vertex temp1 = start;
+	Vertex temp2 = temp1;
+	
+	int count = 0;
+
+	vector<Vertex> V = graph.getAdjacent(temp1);
+	queue<Vertex> Q;
+	
+	
+	
+	for( int i = 0; i < (int)V.size(); i++){
+		 Q.push(V[i]); //somehow put the vectors into a queue
+	}
+
+	do{
+	
+	Vertex temp2 = Q.front();
+	Q.pop();
+	count++;
+	
+	
+	}while(temp2 != end);
+
+
+
+    return count;
 }
 
 /**
@@ -51,7 +76,66 @@ int GraphTools::findShortestPath(Graph & graph, Vertex start, Vertex end)
  */
 int GraphTools::findMinWeight(Graph & graph)
 {
-    return -1;
+	
+	int distance1 = 0;
+	int distance2 = 0;
+	
+	Vertex temp1 = graph.getStartingVertex();
+	
+	vector<Vertex> V = graph.getAdjacent(temp1);
+	queue<Vertex> Q;
+	
+	
+	for( int i = 0; i < (int)V.size(); i++){
+		 Q.push(V[i]); //somehow put the vectors into a queue
+	}
+	
+	Vertex temp2 = Q.front();
+	Q.pop();
+		
+	distance1 = graph.getEdgeWeight(temp1,temp2);
+	
+	Vertex curmin1 = temp1;
+	Vertex curmin2 = temp2;
+	
+	
+	
+	while(!Q.empty()){
+		
+		temp2 = Q.front();
+		Q.pop();
+		
+		distance2 = graph.getEdgeWeight(temp1,temp2); 
+		
+		
+		if(graph.getEdgeLabel(temp1,temp2) == "UNEXPLORED"){
+			if(distance1 > distance2){
+				distance1 = distance2;
+				graph.setEdgeLabel(temp1,temp2, "MIN");
+				graph.setEdgeLabel(curmin1, curmin2, "CROSS");
+				curmin1 = temp1;
+				curmin2 = temp2; 
+			}		
+		
+		
+			graph.setEdgeLabel(temp1,temp2, "CROSS");
+		
+			temp1 = temp2;
+			
+			V = graph.getAdjacent(temp1);
+			for( int i = 0; i < (int)V.size(); i++){
+				 Q.push(V[i]); //somehow put the vectors into a queue
+			}
+		}
+	
+	
+	}
+
+
+    return distance1;
+    
+    
+    return 1;
 }
 
 /**
