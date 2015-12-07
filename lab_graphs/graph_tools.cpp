@@ -101,67 +101,70 @@ int GraphTools::findShortestPath(Graph & graph, Vertex start, Vertex end)
 int GraphTools::findMinWeight(Graph & graph)
 {
 	
-	int distance1 = 0;
-	int distance2 = 0;
 	
-	Vertex temp1 = graph.getStartingVertex();
-	
-	vector<Vertex> V = graph.getAdjacent(temp1);
 	queue<Vertex> Q;
 	
+	Vertex start = graph.getStartingVertex();
 	
-	for( int i = 0; i < (int)V.size(); i++){
-		 Q.push(V[i]); //somehow put the vectors into a queue
-	}
-	
-	Vertex temp2 = Q.front();
-	Q.pop();
-		
-	distance1 = graph.getEdgeWeight(temp1,temp2);
-	
-	Vertex curmin1 = temp1;
-	Vertex curmin2 = temp2;
-	graph.setEdgeLabel(temp1,temp2, "MIN");
-	graph.setVertexLabel(temp1, "VISITED");
-	graph.setVertexLabel(temp2, "VISITED");
+	graph.setVertexLabel(start, "UNEXPLORED");
+	Q.push(start);
+	Vertex tmp1;
+	Vertex tmp2;
 	
 	
 	while(!Q.empty()){
-		
-		temp2 = Q.front();
+		Vertex v = Q.front();
 		Q.pop();
-		
-		distance2 = graph.getEdgeWeight(temp1,temp2); 
-		
-		
-		if(graph.getEdgeLabel(temp1,temp2) == "UNEXPLORED"){
-			if(distance1 > distance2){
-				distance1 = distance2;
-				graph.setEdgeLabel(temp1,temp2, "MIN");
-				graph.setEdgeLabel(curmin1, curmin2, "CROSS");
-				curmin1 = temp1;
-				curmin2 = temp2; 
-			}		
-		
-		
-			graph.setEdgeLabel(temp1,temp2, "CROSS");
-			graph.setVertexLabel(temp1, "VISITED");
-			graph.setVertexLabel(temp2, "VISITED");
-			
-			
-			temp1 = temp2;
-			
-			V = graph.getAdjacent(temp1);
-			for( int i = 0; i < (int)V.size(); i++){
-				 Q.push(V[i]); //somehow put the vectors into a queue
+		vector<Vertex> adj = graph.getAdjacent(v);
+		for(auto vtx = adj.begin(); vtx != adj.end(); vtx++){
+			if(graph.getVertexLabel(*vtx) != "UNEXPLORED"){
+				graph.setEdgeLabel(v, *vtx, "UNEXPLORED");
+				graph.setVertexLabel(*vtx, "UNEXPLORED");
+				Q.push(*vtx);
+			} else if(graph.getEdgeLabel(v, *vtx) != "UNEXPLORED"){
+				graph.setEdgeLabel(v, *vtx, "UNEXPLORED");
 			}
+			
+			tmp1 = v;
+			tmp2 = *vtx;
+						
 		}
-	
 	
 	}
 
+	int minWeight = graph.getEdgeWeight(tmp1, tmp2);
+	
+	graph.setVertexLabel(start, "VISITED");
+	Q.push(start);
+	
+	while(!Q.empty()){
+		Vertex v = Q.front();
+		Q.pop();
+		
+		vector<Vertex> adj = graph.getAdjacent(v);
+		
+		for(auto vtx = adj.begin(); vtx != adj.end(); vtx++){
+			if(graph.getVertexLabel(*vtx) == "UNEXPLORED"){
+				graph.setEdgeLabel(v, *vtx, "DISCOVERY");
+				graph.setVertexLabel(*vtx, "VISITED");
+				Q.push(*vtx);
+			} else if(graph.getEdgeLabel(v, *vtx) == "UNEXPLORED"){
+				graph.setEdgeLabel(v, *vtx, "CROSS");
+			}
+			
+			int currWeight = graph.getEdgeWeight(v, *vtx);
+			if(currWeight <= minWeight){
+				minWeight = currWeight;
+				tmp1 = v;
+				tmp2 = *vtx;
+			}
+		}
+	
+	}
 
-    return distance1;
+	graph.setEdgeLabel(tmp1, tmp2, "MIN");
+
+    return minWeight;
     
    
 }
