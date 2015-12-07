@@ -116,7 +116,8 @@ int GraphTools::findMinWeight(Graph & graph)
 	Vertex curmin1 = temp1;
 	Vertex curmin2 = temp2;
 	graph.setEdgeLabel(temp1,temp2, "MIN");
-	
+	graph.setVertexLabel(temp1, "VISITED");
+	graph.setVertexLabel(temp2, "VISITED");
 	
 	
 	while(!Q.empty()){
@@ -138,7 +139,10 @@ int GraphTools::findMinWeight(Graph & graph)
 		
 		
 			graph.setEdgeLabel(temp1,temp2, "CROSS");
-		
+			graph.setVertexLabel(temp1, "VISITED");
+			graph.setVertexLabel(temp2, "VISITED");
+			
+			
 			temp1 = temp2;
 			
 			V = graph.getAdjacent(temp1);
