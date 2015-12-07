@@ -29,51 +29,57 @@
  *  vertices, you'll have to remember each vertex's parent somehow.
  */
 int GraphTools::findShortestPath(Graph & graph, Vertex start, Vertex end)
-{ 
-	Vertex temp1 = start;
-	Vertex temp2 = temp1;
-	
-	int count = 1;
-
-	vector<Vertex> V = graph.getAdjacent(temp1);
-	queue<Vertex> Q;
+{
+	 queue<Vertex> q;
+	 unordered_map<Vertex, Vertex> m; 
+	 graph.setVertexLabel(start, "UNEXPLORED");
+	 q.push(start);
 	
 	
-	while(temp1 != end){
+	while(!q.empty()) {
+		 Vertex v = q.front();
+		 q.pop();
+		 vector<Vertex> adj = graph.getAdjacent(v);
+		for(auto vtx = adj.begin(); vtx != adj.end(); vtx++) {
+			if(graph.getVertexLabel(*vtx) != "UNEXPLORED") {
+				 graph.setEdgeLabel(v, *vtx, "UNEXPLORED");
+				 graph.setVertexLabel(*vtx, "UNEXPLORED");
+				 q.push(*vtx);
+			 } else if(graph.getEdgeLabel(v, *vtx) != "UNEXPLORED") {
+			 	graph.setEdgeLabel(v, *vtx, "UNEXPLORED");
+			 }
+	 	}
+ 	}
+ 	
+	 //Shortest Path Algorithm
+	 graph.setVertexLabel(start, "VISITED");
+	 q.push(start);
 	
-	for( int i = 0; i < (int)V.size(); i++){
-		 Q.push(V[i]); //somehow put the vectors into a queue
+	while(!q.empty()) {
+		 Vertex v = q.front();
+		 q.pop();
+		 vector<Vertex> adj = graph.getAdjacent(v);
+		for(auto vtx = adj.begin(); vtx != adj.end(); vtx++) {
+			if(graph.getVertexLabel(*vtx) == "UNEXPLORED") {
+				 graph.setEdgeLabel(v, *vtx, "DISCOVERY");
+				 graph.setVertexLabel(*vtx, "VISITED");
+				 q.push(*vtx);
+				 m[*vtx] = v; //Mark the vertex's parent
+			 } else if(graph.getEdgeLabel(v, *vtx) == "UNEXPLORED") {
+			 	graph.setEdgeLabel(v, *vtx, "CROSS");
+				 }
+		}
 	}
-
-	temp1 = Q.front();
-	Q.pop();
-	count++;
-	if(temp1 == end){
-		graph.setEdgeLabel(temp1,temp2, "MINPATH");
-		return count;
+		//Determines min path by going to each nodes parent until it hits the root
+	int count = 0;
+	Vertex curr = end;
+	while(curr != start) {
+			 graph.setEdgeLabel(curr, m[curr], "MINPATH");
+			 curr = m[curr]; //Set curr equal to its parent
+			 count += 1;
 	}
-	V = graph.getAdjacent(temp1);
-	temp2 = temp1;
 	
-	}
-
-
 	return count;
-	
-/*
-	do{
-	
-	Vertex temp3 = Q.front();
-	Q.pop();
-	count++;
-	
-	
-	}while(temp3 != end);
-
-
-
-    return count;
-	*/
 }
 
 /**
