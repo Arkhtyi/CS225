@@ -33,29 +33,47 @@ int GraphTools::findShortestPath(Graph & graph, Vertex start, Vertex end)
 	Vertex temp1 = start;
 	Vertex temp2 = temp1;
 	
-	int count = 0;
+	int count = 1;
 
 	vector<Vertex> V = graph.getAdjacent(temp1);
 	queue<Vertex> Q;
 	
 	
+	while(temp1 != end){
 	
 	for( int i = 0; i < (int)V.size(); i++){
 		 Q.push(V[i]); //somehow put the vectors into a queue
 	}
 
+	temp1 = Q.front();
+	Q.pop();
+	count++;
+	if(temp1 == end){
+		graph.setEdgeLabel(temp1,temp2, "MINPATH");
+		return count;
+	}
+	V = graph.getAdjacent(temp1);
+	temp2 = temp1;
+	
+	}
+
+
+	return count;
+	
+/*
 	do{
 	
-	Vertex temp2 = Q.front();
+	Vertex temp3 = Q.front();
 	Q.pop();
 	count++;
 	
 	
-	}while(temp2 != end);
+	}while(temp3 != end);
 
 
 
     return count;
+	*/
 }
 
 /**
@@ -97,6 +115,7 @@ int GraphTools::findMinWeight(Graph & graph)
 	
 	Vertex curmin1 = temp1;
 	Vertex curmin2 = temp2;
+	graph.setEdgeLabel(temp1,temp2, "MIN");
 	
 	
 	
@@ -134,8 +153,7 @@ int GraphTools::findMinWeight(Graph & graph)
 
     return distance1;
     
-    
-    return 1;
+   
 }
 
 /**
