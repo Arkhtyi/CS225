@@ -191,7 +191,7 @@ void GraphTools::findMST(Graph & graph)
 		}
 	};
 	
-	vectors<Edge> edges = graph.getEdges();
+	vector<Edge> edges = graph.getEdges();
 	int numVerts = graph.getVertices().size();
 	sort(edges.begin(), edges.end(), edgeLess());
 	DisjointSets s;
