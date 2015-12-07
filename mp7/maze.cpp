@@ -191,19 +191,20 @@ std::vector <int> SquareMaze::solveMaze(){
 }
 	
 PNG* SquareMaze::drawMaze()const{
-  /*
+  
 	PNG* maze = new PNG(wid*10+1,hi*10+1);
+	int index = 0;
 	
-	for(int i = 10 ; i < maze->width(); i++){
-		maze(i,0)->red = 0;
-		maze(i,0)->green = 0;
-		maze(i,0)->blue = 0;
+	for(int i = 10 ; i < (int) maze->width(); i++){
+		(*maze)(i,0)->red = 0;
+		(*maze)(i,0)->green = 0;
+		(*maze)(i,0)->blue = 0;
 	}
 	
-	for(int i = 0 ; i < maze->height(); i++){
-		maze(0,i)->red = 0;
-		maze(0,i)->green = 0;
-		maze(0,i)->blue = 0;
+	for(int i = 0 ; i < (int)maze->height(); i++){
+		(*maze)(0,i)->red = 0;
+		(*maze)(0,i)->green = 0;
+		(*maze)(0,i)->blue = 0;
 	}
 	
 	for(int x = 0 ; x < wid; x++){
@@ -211,16 +212,16 @@ PNG* SquareMaze::drawMaze()const{
 			index = getId(x,y,wid);
 			if(right[index]){
 				for(int k = 0 ; k <= 10; k++){
-					maze((x+1)*10,y*10+k)->red = 0;
-					maze((x+1)*10,y*10+k)->green = 0;
-					maze((x+1)*10,y*10+k)->blue = 0;	
+					(*maze)((x+1)*10,y*10+k)->red = 0;
+					(*maze)((x+1)*10,y*10+k)->green = 0;
+					(*maze)((x+1)*10,y*10+k)->blue = 0;	
 				}
 			}
 			if(down[index]){
 				for(int k = 0 ; k <= 10; k++){
-					maze(x*10+k, (y+1)*10)red = 0;
-					maze(x*10+k, (y+1)*10)->green = 0;
-					maze(x*10+k, (y+1)*10)->blue = 0;	
+					(*maze)(x*10+k, (y+1)*10)->red = 0;
+					(*maze)(x*10+k, (y+1)*10)->green = 0;
+					(*maze)(x*10+k, (y+1)*10)->blue = 0;	
 				}
 			}
 		
@@ -228,9 +229,9 @@ PNG* SquareMaze::drawMaze()const{
 	
 		}
 	} 
-	*/
 	
-	return NULL;
+	
+	return maze;
 }
 	
 PNG* SquareMaze::drawMazeWithSolution(){
