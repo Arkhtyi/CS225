@@ -185,5 +185,23 @@ int GraphTools::findMinWeight(Graph & graph)
  */
 void GraphTools::findMST(Graph & graph)
 {
-
+	struct edgeLess{
+		bool operator()(const Edge a, const Edge b) const{
+			return a.weight < b.weight;
+		}
+	};
+	
+	vectors<Edge> edges = graph.getEdges();
+	int numVerts = graph.getVertices().size();
+	sort(edges.begin(), edges.end(), edgeLess());
+	DisjointSets s;
+	s.addelements(numVerts);
+	
+	for(auto edge = edges.begin(); edge != edges.end(); edge++){
+		if(s.find(edge->source) != s.find(edge->dest)){
+			graph.setEdgeLabel(edge->source, edge->dest, "MST");
+			s.setunion(edge->source, edge->dest);
+		}
+	
+	}
 }
