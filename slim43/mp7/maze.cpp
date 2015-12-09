@@ -1,5 +1,6 @@
 /* Your code here! */
 
+#include <unordered_map>
 #include "maze.h"
 
 SquareMaze::SquareMaze(){
@@ -172,6 +173,10 @@ std::vector <int> SquareMaze::solveMaze(){
 	std::vector <int>  temp;
 	std::vector <int>  best;
 	std::vector <int>  solution;
+	std::unordered_map<int, int> parent; //use the map to store the 'parent' of current room
+	int par = 0;
+	int cur = 0;
+	int nex = 0;
 	int curcount = 0;
 	int prevcount = 0;
 	int index = 0;	
@@ -184,17 +189,15 @@ std::vector <int> SquareMaze::solveMaze(){
 	//if so, put them in the queue.
 	//continue until find an end(Y is at bottom).
 	//
-  /*
+  
 	Q.push(getId(0,0,wid));
 	if(right[getId(0,0,wid)] == false)
 		Q.push(getId(1,0,wid));
 	if(right[getId(0,0,wid)] == false)
 		Q.push(getId(0,1,wid));
-	while(*//*until we try all possible routes? *//*){
 	
-		curcount = 0;
 		
-		while(!Q.empty() && gety(index,wid) < hi){
+	while(!Q.empty()){
 			index = Q.front();
 			Q.pop();
 			xval = getx(index,wid);
@@ -204,32 +207,82 @@ std::vector <int> SquareMaze::solveMaze(){
 			curcount++;
 		
 			//push in the surrounding rooms
-			if(right[getId(xval,yval,wid)] == false && xval+1 < wid && visited[getId(xval+1,yval,wid)] == false) //right
+			if(right[getId(xval,yval,wid)] == false && xval+1 < wid && visited[getId(xval+1,yval,wid)] == false){ //right			
 				Q.push(getId(xval+1,yval,wid));
-			if(right[getId(xval,yval,wid)] == false && yval+1 < hi && visited[getId(xval,yval+1,wid)] == false) //bottom
+				cur = section.find(index);
+				nex = section.find(getId(xval+1,yval,wid));
+				section.setunion(cur, nex);
+				parent[getId(xval+1,yval,wid)] = index;
+			}
+			if(right[getId(xval,yval,wid)] == false && yval+1 < hi && visited[getId(xval,yval+1,wid)] == false){ //bottom
 				Q.push(getId(xval,yval+1,wid));
-			
-			if(right[getId(xval-1,yval,wid)] == false && xval-1 >= 0 && visited[getId(xval-1,yval,wid)] == false) //left
+				cur = section.find(index);
+				nex = section.find(getId(xval,yval+1,wid));
+				section.setunion(cur, nex);
+				parent[getId(xval,yval+1,wid)] = index;
+			}
+			if(xval-1 >= 0 && right[getId(xval-1,yval,wid)] == false &&  visited[getId(xval-1,yval,wid)] == false){ //left
 				Q.push(getId(xval-1,yval,wid));
-			if(right[getId(xval,yval-1,wid)] == false && yval-1 >= 0 && visited[getId(xval,yval-1,wid)] == false) //top
+				cur = section.find(index);
+				nex = section.find(getId(xval-1,yval,wid));
+				section.setunion(cur, nex);
+				parent[getId(xval-1,yval,wid)] = index;
+			}
+			if(yval-1 >= 0 && right[getId(xval,yval-1,wid)] == false && visited[getId(xval,yval-1,wid)] == false){ //top
 				Q.push(getId(xval,yval-1,wid));
-		
+				cur = section.find(index);
+				nex = section.find(getId(xval,yval-1,wid));
+				section.setunion(cur, nex);
+				parent[getId(xval,yval-1,wid)] = index;
+				
+			}
 		
 		
 		
 			//push in the current path index(==potential solution) in solution vector
-			solution.push_back(index);
+			
 		}
 		
-		if(curcount > prevcount){ //swapping the results if the newer path is longer
-			prevcount = curcount;
-			best = solution;
+		int besti = 0;	
+		
+		for(int i = 0; i < wid; i++){
+			
+			int point = getId(i, hi-1, wid);
+			int start = section.find(getId(0,0,wid));
+			int end	= section.find(point);
+			
+			if(start == end){
+				while(point != getId(0,0,wid)){
+					
+					solution.push_back(point);
+					
+					point = parent[point];
+					
+					
+					
+					curcount++;
+				}
+				
+				reverse(solution.begin(), solution.end());
+			}
+			if(curcount > prevcount){
+				prevcount = curcount;
+				besti = i;
+				best = solution;
+			}
+		
+			solution.clear();
+			curcount = 0;
+		
 		}
+	
 		
 		
 		
-	}
-  */ 
+		
+		
+	
+
 /*
 	//traverse all the sections on the bottom row
 	for(int i = 0; i < wid; i++){
