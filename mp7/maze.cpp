@@ -28,6 +28,9 @@ int SquareMaze::getId(int x, int y, int width) const{
 
 void SquareMaze::makeMaze(int width, int height){
 
+
+	srand (time(NULL));
+
 	int curx = 1;
 	int cury = 1;
 	int random = 0;
@@ -58,14 +61,13 @@ void SquareMaze::makeMaze(int width, int height){
 			right[index] = true;
 			down[index] = true;
 			visited[index] = false;	
-			path[index] = -1;
 		}
 	}	
 		index = getId(0,0,width);
+		
 	
-		Q.push(index);
 	
-	while(count != wid*hi){
+	while(count < wid*hi-1){
 		
 		//pop out coordinates from the queue
 		
@@ -78,27 +80,15 @@ void SquareMaze::makeMaze(int width, int height){
 		//decrypt it to get coordinates
 		curx = getx(index, wid);
 		cury = gety(index, wid);
-		
+		//std::cout << "curx:" << curx << std::endl;
+		//std::cout << "cury:" << cury << std::endl;
 		//check if it was visited before
 		if(visited[index] == false){
 			//mark this section visited
-			count++;
+			
 			visited[index] = true;
 			//make random number and use it to open right or down
-			/*
-			int random = rand() % 10;
-			int random2 = rand() % 10;
-			if(random <= 5){
-				down[index] = true;
-			}else{
-				down[index] = false;
-			}
-			
-			if(random2 <= 5)
-				down[index] = false;
-			else
-				down[index] = true;
-			*/
+	
 			//open random number meets requirement && the new section was not visited && doesnt make it cycle(?)
 			
 			int cur = section.find(index);
@@ -106,22 +96,31 @@ void SquareMaze::makeMaze(int width, int height){
 			if(curx+1 < wid){
 				nex = section.find(getId(curx+1,cury,wid));
 					
-				if(visited[getId(curx+1,cury,wid)] == false && cur != nex){
+				if(cur != nex){
 					right[index] = false;
 					section.setunion(cur, nex);
+					count++;
 				}
+				
 			}
+			
+			cur = section.find(index);
+			
+			
+			
 			if(cury+1 < hi){
 				nex = section.find(getId(curx,cury+1,wid));
 				
-				if(visited[getId(curx,cury+1,wid)] == false && cur != nex ){
+				if(cur != nex ){
 					down[index] = false;
 					section.setunion(cur,nex);
+					count++;
 				}			
 			
 			}
 		}
 		
+		visited[index] = true;
 		
 	}
 	
@@ -171,7 +170,7 @@ std::vector <int> SquareMaze::solveMaze(){
 	
 	std::queue <int>  Q;
 	std::vector <int>  temp;
-	std::vector <int>  blah;
+	std::vector <int>  best;
 	std::vector <int>  solution;
 	int curcount = 0;
 	int prevcount = 0;
@@ -185,36 +184,52 @@ std::vector <int> SquareMaze::solveMaze(){
 	//if so, put them in the queue.
 	//continue until find an end(Y is at bottom).
 	//
-/*	
+  /*
 	Q.push(getId(0,0,wid));
 	if(right[getId(0,0,wid)] == false)
 		Q.push(getId(1,0,wid));
 	if(right[getId(0,0,wid)] == false)
 		Q.push(getId(0,1,wid));
-
-	while(!Q.empty() && gety(index,wid) < hi){
-		index = Q.front();
-		Q.pop();
-		xval = getx(index,wid);
-		yval = gety(index,wid);
-		visited[index] = true;
+	while(*//*until we try all possible routes? *//*){
+	
+		curcount = 0;
 		
-		//push in the surrounding rooms
-		if(right[getId(xval,yval,wid)] == false && xval+1 < wid && visited[getId(xval+1,yval,wid)] == false) //right
-			Q.push(getId(xval+1,yval,wid));
-		if(right[getId(xval,yval,wid)] == false && yval+1 < hi && visited[getId(xval,yval+1,wid)] == false) //bottom
-			Q.push(getId(xval,yval+1,wid));
+		while(!Q.empty() && gety(index,wid) < hi){
+			index = Q.front();
+			Q.pop();
+			xval = getx(index,wid);
+			yval = gety(index,wid);
+			visited[index] = true;
+		
+			curcount++;
+		
+			//push in the surrounding rooms
+			if(right[getId(xval,yval,wid)] == false && xval+1 < wid && visited[getId(xval+1,yval,wid)] == false) //right
+				Q.push(getId(xval+1,yval,wid));
+			if(right[getId(xval,yval,wid)] == false && yval+1 < hi && visited[getId(xval,yval+1,wid)] == false) //bottom
+				Q.push(getId(xval,yval+1,wid));
 			
-		if(right[getId(xval-1,yval,wid)] == false && xval-1 >= 0 && visited[getId(xval-1,yval,wid)] == false) //left
-			Q.push(getId(xval-1,yval,wid));
-		if(right[getId(xval,yval-1,wid)] == false && yval-1 >= 0 && visited[getId(xval,yval-1,wid)] == false) //top
-			Q.push(getId(xval,yval-1,wid));
+			if(right[getId(xval-1,yval,wid)] == false && xval-1 >= 0 && visited[getId(xval-1,yval,wid)] == false) //left
+				Q.push(getId(xval-1,yval,wid));
+			if(right[getId(xval,yval-1,wid)] == false && yval-1 >= 0 && visited[getId(xval,yval-1,wid)] == false) //top
+				Q.push(getId(xval,yval-1,wid));
 		
-		//push in the current path index(==potential solution) in solution vector
-		solution.push_back(index);
+		
+		
+		
+			//push in the current path index(==potential solution) in solution vector
+			solution.push_back(index);
+		}
+		
+		if(curcount > prevcount){ //swapping the results if the newer path is longer
+			prevcount = curcount;
+			best = solution;
+		}
+		
+		
+		
 	}
-
-*/
+  */ 
 /*
 	//traverse all the sections on the bottom row
 	for(int i = 0; i < wid; i++){
@@ -236,7 +251,7 @@ std::vector <int> SquareMaze::solveMaze(){
 	}
 
 	*/
-	return solution;
+	return best;
 }
 	
 PNG* SquareMaze::drawMaze()const{
