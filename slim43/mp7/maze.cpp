@@ -124,7 +124,12 @@ void SquareMaze::makeMaze(int width, int height){
 		visited[index] = true;
 		
 	}
-	
+	/*
+	for(int i = 0 ; i < (int)visited.size(); i++)
+	{
+		visited[i] = false;
+	}
+	*/
 
 	
 }
@@ -174,6 +179,7 @@ std::vector <int> SquareMaze::solveMaze(){
 	std::vector <int>  best;
 	std::vector <int>  solution;
 	std::unordered_map<int, int> parent; //use the map to store the 'parent' of current room
+	int holder = 0;
 	int par = 0;
 	int cur = 0;
 	int nex = 0;
@@ -199,37 +205,46 @@ std::vector <int> SquareMaze::solveMaze(){
 		
 	while(!Q.empty()){
 			index = Q.front();
+			holder = index;
 			Q.pop();
 			xval = getx(index,wid);
 			yval = gety(index,wid);
 			visited[index] = true;
+			
+			std::cout << "index: " << index << std::endl;
+			std::cout << "xval: " << xval << std::endl;
+			std::cout << "yval: " << yval << std::endl;
 		
-			curcount++;
 		
 			//push in the surrounding rooms
-			if(right[getId(xval,yval,wid)] == false && xval+1 < wid && visited[getId(xval+1,yval,wid)] == false){ //right			
+			if(canTravel(xval,yval,0) && (visited[getId(xval+1,yval,wid)] == false)){ //right			
 				Q.push(getId(xval+1,yval,wid));
+				index = holder;
 				cur = section.find(index);
 				nex = section.find(getId(xval+1,yval,wid));
 				section.setunion(cur, nex);
 				parent[getId(xval+1,yval,wid)] = index;
+				
 			}
-			if(right[getId(xval,yval,wid)] == false && yval+1 < hi && visited[getId(xval,yval+1,wid)] == false){ //bottom
+			if(canTravel(xval,yval,1)&& (visited[getId(xval,yval+1,wid)] == false)){ //bottom
 				Q.push(getId(xval,yval+1,wid));
+				index = holder;
 				cur = section.find(index);
 				nex = section.find(getId(xval,yval+1,wid));
 				section.setunion(cur, nex);
 				parent[getId(xval,yval+1,wid)] = index;
 			}
-			if(xval-1 >= 0 && right[getId(xval-1,yval,wid)] == false &&  visited[getId(xval-1,yval,wid)] == false){ //left
+			if(xval-1 >= 0 && (right[getId(xval-1,yval,wid)] == false) &&  (visited[getId(xval-1,yval,wid)] == false)){ //left
 				Q.push(getId(xval-1,yval,wid));
+				index = holder;
 				cur = section.find(index);
 				nex = section.find(getId(xval-1,yval,wid));
 				section.setunion(cur, nex);
 				parent[getId(xval-1,yval,wid)] = index;
 			}
-			if(yval-1 >= 0 && right[getId(xval,yval-1,wid)] == false && visited[getId(xval,yval-1,wid)] == false){ //top
+			if(yval-1 >= 0 && (right[getId(xval,yval-1,wid)] == false) && (visited[getId(xval,yval-1,wid)] == false)){ //top
 				Q.push(getId(xval,yval-1,wid));
+				index = holder;
 				cur = section.find(index);
 				nex = section.find(getId(xval,yval-1,wid));
 				section.setunion(cur, nex);
@@ -248,6 +263,7 @@ std::vector <int> SquareMaze::solveMaze(){
 		for(int i = 0; i < wid; i++){
 			
 			int point = getId(i, hi-1, wid);
+			//std::cout << point << std::endl;
 			int start = section.find(getId(0,0,wid));
 			int end	= section.find(point);
 			
@@ -258,7 +274,7 @@ std::vector <int> SquareMaze::solveMaze(){
 					
 					point = parent[point];
 					
-					
+					//std::cout << point << std::endl;
 					
 					curcount++;
 				}
