@@ -1,8 +1,8 @@
-Grading r1890 by slim43 on 2015-08-28T21:36:55.702011Z
+Grading revision r4838 by tolar2, dated 2015-09-02 01:06:28.000017394 -0500 CDT
 Monad Autograder
-Testing mp1 at 2016-01-22 22:48:46
+Testing mp1 at 2015-09-09 00:44:56
 
-"Hey Jude / Your make is bad / You should fix that / Compiler error / Remember / To let it search the root path / Then you can start / To make it better" ~ Ryan North
+"Rejoice!" ~ Kotomine Kirei
 
 Setting up test environment...
 Compiling...
