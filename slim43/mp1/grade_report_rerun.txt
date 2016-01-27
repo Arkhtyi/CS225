@@ -1,9 +1,8 @@
-Grading r51079 by tolar2 on Sat Jan 23 08:21:18 UTC 2016
-/dev/shm/cs225student_test/autograder/monad/grade: line 11: cd: monad: Not a directory
+Grading revision r4838 by tolar2, dated 2015-09-02 01:06:28.000017394 -0500 CDT
 Monad Autograder
-Testing mp1 at 2016-01-26 21:51:20
+Testing mp1 at 2015-09-09 00:44:56
 
-"If at first you don't succeed, that's one data point." ~ Randall Munroe
+"Rejoice!" ~ Kotomine Kirei
 
 Setting up test environment...
 Compiling...
