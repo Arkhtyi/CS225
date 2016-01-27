@@ -1,8 +1,8 @@
-Grading revision r4838 by tolar2, dated 2015-09-02 01:06:28.000017394 -0500 CDT
+Grading r51084 by tolar2 on Wed Jan 27 04:03:24 UTC 2016
 Monad Autograder
-Testing mp1 at 2015-09-09 00:44:56
+Testing mp1 at 2016-01-26 22:15:14
 
-"Rejoice!" ~ Kotomine Kirei
+"The most amazing achievement of the computer software industry is its continuing cancellation of the steady and staggering gains made by the computer hardware industry." ~ Henry Petroski
 
 Setting up test environment...
 Compiling...
